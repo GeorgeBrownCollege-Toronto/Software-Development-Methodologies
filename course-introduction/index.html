@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title> Software Development Methodologies </title>
+
+    <meta name="author" content="Dhruvin Parikh">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../reveal.js/css/theme/solarized.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../reveal.js/css/print/pdf.css' : '../reveal.js/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+      .reveal .slides h1, .reveal .slides h2, .reveal .slides h3 {
+        text-transform: none;
+      }
+
+      .two-column {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .two-column em {
+        margin: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+<!------------------------------------------------------->
+
+
+
+<section data-markdown><script type="text/template">
+
+### BCDV 1009 - Software Development Methodologies
+
+#### Course Introduction
+
+*Dhruvin Parikh, May 2020*
+
+</script></section>
+
+<section id="course-description">
+  <h2>Course Description</h2>
+    <ul>
+      <li>Covers scrum as an industry standard methodology.</li>
+      <li>Apply test driven development, version control, continuous integration and continuous delivery in blockchain</li>
+      <li>Best practices in DevOps using industry standard tools</li>
+    </ul>
+</section>
+
+<section id="course-outline" data-markdown><script type="text/template">
+    ### Course Outline
+    * Agile Fundamentals and Overview of DevOps
+    * Scrum Fundamentals and Advanced `git` concenpts
+    * Code review , paired programming and test driven development
+    * Agile best practices
+    * Agile in distributed teams
+</script></section>
+
+<section id="evaluation" > 
+    <h2>Evaluation System</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Assessment</th>
+          <th>Description</th>
+          <th>Weightage</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Participation</td>
+          <td>In class participation</td>
+          <td>10%</td>
+        </tr>
+        <tr>
+          <td>Lab Exercises 5 @6%</td>
+          <td>Mock sprints + Role Evaluation</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+          <td>Lab Tests 5 @6%</td>
+          <td>DevOps activities</td>
+          <td>30%</td>
+        </tr>
+        <tr>
+            <td>Final Exam</td>
+            <td>Short answer</td>
+            <td>30%</td>
+          </tr>
+      </tbody>
+    </table>
+  </section>
+
+<section id="announcement" data-markdown><script type="text/template">
+    ## Announcement
+    * Daily scrum standup
+    * Final Exam - May 24, 2020
+</script></section>
+
+<section id="learning-outcome">
+  <h2>Learning outcome</h2>
+    <ul>
+      <li>Apply Scrum methodology to effectively participate in the management of a development project</li>
+      <li>Utilize advanced features of a version control tool such as Git</li>
+      <li>Effectively participate in the project development process using a test-driven approach</li>
+      <li>Deploy smart contract to a test network</li>
+      <li>Understand and implement a Continuous Integration/Continuous Delivery pipeline</li>
+    </ul>
+</section>
+
+<section data-markdown><script type="text/template">
+
+## End
+
+</script></section>
+
+
+
+<!------------------------------------------------------->
+
+
+      </div>
+
+    </div>
+
+    <script src="../reveal.js/lib/js/head.min.js"></script>
+    <script src="../reveal.js/js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+	math: {
+          mathjax: './lib/MathJax/MathJax.js',
+          config: 'TeX-AMS_SVG-full',
+	},
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../reveal.js/plugin/math/math.js', async: true },
+           // Zoom in and out with Alt+click
+           { src: "../reveal.js/plugin/zoom-js/zoom.js", async: true },
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
