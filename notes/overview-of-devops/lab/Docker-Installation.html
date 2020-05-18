@@ -1,0 +1,27 @@
+<h1 id="docker">Docker</h1>
+<h2 id="installation">Installation</h2>
+<h3 id="macos">MacOS</h3>
+<p>Installation Instructions - <a href="https://docs.docker.com/docker-for-mac/install/">https://docs.docker.com/docker-for-mac/install/</a></p>
+<h3 id="windows">Windows</h3>
+<p>Installation Instructions for <strong>Windows 10 Pro with Entreprise and Education(1607 Anniversary update, Build 14393or later)</strong> - <a href="https://docs.docker.com/docker-for-windows/install/">https://docs.docker.com/docker-for-windows/install/</a></p>
+<p>Installation Instructions for other Windows version :</p>
+<ul>
+<li>Install <strong>Docker-Toolbox</strong> from <a href="https://download.docker.com/win/stable/DockerToolbox.exe">https://download.docker.com/win/stable/DockerToolbox.exe</a></li>
+<li>Double click on setup and follow on-screen instructions and do not forget to check Oracle Virtual Box if you do not have installed previously in the Docker Toolbox set up window.</li>
+<li>Once installed the Docker Toolbox Quickstart Icon is available on Desktop. Open it. (It will create a default machine)</li>
+<li>Run the command <code>docker-machine ip</code> to get the IP address of docker machine.</li>
+</ul>
+<h3 id="windows-subsystem-for-linux">Windows Subsystem for Linux</h3>
+<ul>
+<li><p>Installation instructions for Ubuntu as a Windows subsystem - <a href="https://docs.microsoft.com/en-us/windows/wsl/install-win10">https://docs.microsoft.com/en-us/windows/wsl/install-win10</a></p></li>
+<li><p>Installation instructions for Docker-Toolbox - <a href="https://download.docker.com/win/stable/DockerToolbox.exe">https://download.docker.com/win/stable/DockerToolbox.exe</a></p></li>
+<li><p>Launch Docker QuickStart</p></li>
+<li><p>Installation instructions of docker-client on windows subsystem Ubuntu : <span class="citation">[https://medium.com/@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4]</span>(https://medium.com/<span class="citation">@sebagomez/installing-the-docker-client-on-ubuntus-windows-subsystem-for-linux-612b392a44c4</span>)</p></li>
+<li><p>Run</p></li>
+</ul>
+<pre class="bashscript"><code>export DOCKER_HOST=tcp://192.168.99.100:2376 // your Docker IP
+export DOCKER_CERT_PATH=/mnt/c/Users/YOUR_USERNAME/.docker/machine/certs
+export DOCKER_TLS_VERIFY=1</code></pre>
+<ul>
+<li>Restart WSL</li>
+</ul>
