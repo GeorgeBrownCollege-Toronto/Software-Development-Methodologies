@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title> Software Development Methodologies </title>
+
+    <meta name="author" content="Dhruvin Parikh">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="../../../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../../../reveal.js/css/theme/solarized.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../../../reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../../../reveal.js/css/print/pdf.css' : '../../../reveal.js/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+      .reveal .slides h1, .reveal .slides h2, .reveal .slides h3 {
+        text-transform: none;
+      }
+
+      .two-column {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .two-column em {
+        margin: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+<!------------------------------------------------------->
+
+
+
+<section data-markdown><script type="text/template">
+
+### BCDV 1009 - Software Development Methodologies
+
+#### Overview of DevOps
+
+*Dhruvin Parikh, May 2020*
+
+</script></section>
+
+<section id="course-description">
+  <h2>Class Plan</h2>
+    <ul>
+      <li>Introduction  DevOps</li>
+      <li>Best tools used in DevOps</li>
+      <li>Docker and its application in DevOps</li>
+      <li>Lab - 1</li>
+    </ul>
+</section>
+
+<section>
+    <h2>What is DevOps?</h2>
+    <ul style="list-style-type: none;">
+        <li>The term “DevOps” typically refers to the emerging professional movement that advocates a collaborative working relationship between Development and IT Operations, resulting in the fast flow of planned work (i.e., high deploy rates), while simultaneously increasing the reliability, stability, resilience and security of the production environment (Gene Kim).        </li>
+    </ul>
+</section>
+
+<section>
+    <h2>Erstwhile of DevOps</h2>
+    <section data-transition="slide">
+        <h3>Large firms like Google would</h3>
+        <ul>
+            <li>Manage own firmware/hardware</li>
+            <li>Use open source and contribute back</li>
+            <li>Write own methods and scripts</li>
+            <li>Sometime engineer own hardware</li>
+        </ul>
+    </section>
+    <section data-transition="slide">
+        <h3>Results in</h3>
+        <ul>
+            <li>Control over data and enviroment</li>
+            <li>Complexity and change</li>
+        </ul>
+    </section>
+    <section data-transition="slide">
+        <h3>A client in need of IT services or a app shop would</h3>
+        <ul>
+            <li>Deploy on cloud like AWS</li>
+            <li>Pay for lot of value added services</li>
+            <li>Pay third-party tool to install and deploy</li>
+            <li>Trust someone else chips and software</li>
+        </ul>
+    </section>
+    <section data-transition="slide">
+        <h3>Results in</h3>
+        <ul>
+            <li>Quick and simple setup</li>
+            <li>Lack of control and expensive</li>
+        </ul>
+    </section>
+</section>
+
+<section>
+    <h2>DevOps</h2>
+    <img src="Devops.png" style="max-width: 50%;max-height: 50%;">
+</section>
+
+<section>
+    <h2>DevOps Toolchain</h2>
+    <img src="Devops-toolchain.png">
+</section>
+
+<section>
+    <h2>Tools for Automation</h2>
+    <ul>
+        <li><b>CI/CD</b> — Jenkins, Shippable, Bamboo</li>
+        <li><b>Containerization</b> — Docker, Rocket, Unik</li>
+        <li><b>Orchestration</b> — Kubernetes, Swarm, Mesos</li>
+        <li><b>Deployment</b> — Elastic Beanstalk, Octopus, Vamp</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Jenkins</h2>
+    <section data-transition="slide">
+     <img src="jenkins.png" style="box-shadow: none;border: none;">
+    </section>
+    <section data-transition="slide">
+        <ul>
+            <li>Jenkins is a self-contained, open source automation server which can be used to automate all sorts of tasks related to building, testing, and delivering or deploying software.
+             <li>Jenkins can be installed through native system packages, Docker, or even run standalone by any machine with a Java Runtime Environment (JRE) installed.</li>
+        </ul>
+        <p>https://jenkins.io/doc/</p>
+    </section>
+</section>
+
+<section>
+    <h2>Docker</h2>
+    <section data-transition="slide">
+      <img src="docker.png">
+    </section>
+    <section data-transition="slide">
+        <ul>
+            <li>Containerization is a technology that’s been around for a long time, but it’s seen new life with Docker. It packages applications as images that contain everything needed to run them: code, runtime environment, libraries, and configuration. Images run in containers, which are discrete processes that take up only as many resources as any other executable.</li>
+        </ul>
+        <br/>
+        <p>https://docker-curriculum.com/#introduction</p>
+    </section>
+</section>
+
+<section>
+    <h2>Continuous Integration and Continuous Delivery</h2>
+    <img src="CI-CD.png" style="max-width: 80%; max-height: 80%;">
+</section>
+
+<section>
+    <h2>Readings</h2>
+    <ul>
+        <li><a href="https://www.docker.com/blog/docker-101-introduction-docker-webinar-recap/">Docker 101</a></li>
+        <li><a href="https://www.oreilly.com/radar/the-evolution-of-devops/">Evoluation Of Docker</a></li>
+        <li><a href="https://docker-curriculum.com/">Docker Curriculumn</a></li>
+        <li><a href="https://www.guru99.com/must-know-linux-commands.html">Must know linux Commands</a></li>
+    </ul>
+</section>
+
+<section data-markdown><script type="text/template">
+
+## End
+
+</script></section>
+
+
+
+<!------------------------------------------------------->
+
+
+      </div>
+
+    </div>
+
+    <script src="../../../reveal.js/lib/js/head.min.js"></script>
+    <script src="../../../reveal.js/js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+	math: {
+          mathjax: './lib/MathJax/MathJax.js',
+          config: 'TeX-AMS_SVG-full',
+	},
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../../../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../../../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../../../reveal.js/plugin/math/math.js', async: true },
+           // Zoom in and out with Alt+click
+           { src: "../../../reveal.js/plugin/zoom-js/zoom.js", async: true },
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
