@@ -140,22 +140,21 @@
         $ docker run -i -t ubuntu /bin/bash
         ```
     </script></section>
+    <section data-markdown><script type="text/template">
+        ### A `run` command
+        * Pull images from registry if not found locally
+        * Creates a new container
+        * Allocates a read-write filesystem to the container, as its final layer
+        * Docker creates a network interface to connect the container-based
+        * Docker starts the container and executes the sub-command if any 
+        * `exit` to terminate sub-command stops container.
+    </script></section>
     <section data-markdown data-transition="slide"><script type="text/template">
         #### SERVICES
         * Services allow you to scale containers across multiple Docker daemons, which all work together as a swarm with multiple managers and workers. 
         * Each member of a swarm is a Docker daemon, and all the daemons communicate using the Docker API.
     </script></section>
 </section>
-
-<section data-markdown><script type="text/template">
-    ### A `run` command
-    * Pull images from registry if not found locally
-    * Creates a new container
-    * Allocates a read-write filesystem to the container, as its final layer
-    * Docker creates a network interface to connect the container-based
-    * Docker starts the container and executes the sub-command if any 
-    * `exit` to terminate sub-command stops container.
-</script></section>
 
 <section>
     <h2>Docker Architecture</h2>
