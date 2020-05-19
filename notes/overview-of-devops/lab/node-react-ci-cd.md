@@ -315,3 +315,7 @@ vi App.js
 9. Click the **X** at the top-right to return to the main Blue Ocean interface, which lists your previous Pipeline runs in reverse chronological order.
 
 ![pipeline runs](./node-js-react-24-main-blue-ocean-interface-with-all-previous-runs-displayed.png)
+
+#### Credits
+
+[Jenkins tutorial overview](https://www.jenkins.io/doc/tutorials/)

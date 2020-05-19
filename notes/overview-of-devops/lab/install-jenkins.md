@@ -151,6 +151,10 @@ When you first access a new Jenkins instance, you are asked to unlock it using a
 ```bash
 docker logs jenkins-tutorial
 ```
+or
+```bash
+docker exec -it jenkins-tutorial     cat /var/jenkins_home/secrets/initialAdminPassword
+```
 
 3. From your terminal/command prompt window again, copy the automatically-generated alphanumeric password (between the 2 sets of asterisks).
 ![admin password](./setup-jenkins-02-copying-initial-admin-password.png)
@@ -175,7 +179,7 @@ When the **Create First Admin User** page appears, specify your details in the r
 
 and click **Save and Finish**
 
-![save and finish] (./setup-jenkins-05-save-and-finish.png)
+![save and finish](./setup-jenkins-05-save-and-finish.png)
 
 When the **Jenkins is ready** page appears, click **Start using Jenkins**.
 
@@ -196,4 +200,10 @@ To restart the Jenkins/Blue Ocean Docker container:
 
 2. Browse to `http://localhost:8080`.
 
+    **Note for Windows Users:** If you use Docker-ToolBox , browse to `http://<docker-machine-ip>:8080` 
+
 3. Wait until the log in page appears and log in.
+
+#### Credits
+
+[Jenkins tutorial overview](https://www.jenkins.io/doc/tutorials/)

@@ -8,6 +8,8 @@ Installation Instructions - [https://docs.docker.com/docker-for-mac/install/](ht
 
 ### Windows
 
+**Get Windows OS version** : Open command prompt/Powershell and run `systeminfo`.
+
 Installation Instructions for **Windows 10 Pro with Entreprise and Education(1607 Anniversary update, Build 14393or later)** - [https://docs.docker.com/docker-for-windows/install/](https://docs.docker.com/docker-for-windows/install/)
 
 Installation Instructions for other Windows version :

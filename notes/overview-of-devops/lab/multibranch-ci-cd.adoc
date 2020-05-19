@@ -115,9 +115,9 @@ Blue Ocean interface",width=100%]
 [NOTE]
 ====
 The Pipeline stub consists of the basic requirements for a valid Pipeline - i.e.
-an link:/doc/book/pipeline/syntax#agent[`agent`] and a
-link:/doc/book/pipeline/syntax#stages[`stages`] section, as well as a
-link:/doc/book/pipeline/syntax#stage[`stage`] directive.
+an https://www.jenkins.io/doc/book/pipeline/syntax#agent[`agent`] and a
+https://www.jenkins.io/doc/book/pipeline/syntax#stages[`stages`] section, as well as a
+https://www.jenkins.io/doc/book/pipeline/syntax#stage[`stage`] directive.
 
 The reason why the `building-a-multibranch-pipeline-project` repository includes
 a `Jenkinsfile` Pipeline stub is that its presence in a branch makes Blue Ocean
@@ -572,3 +572,7 @@ To clear the application and its content from your browser:
   `about:serviceworkers`
 . Locate the "Registered Service Worker" entry for `\http://localhost:5000`
 . Click its *Unregister* button.
+
+==== Credits
+
+https://www.jenkins.io/doc/tutorials/[Jenkins tutorial overview]
