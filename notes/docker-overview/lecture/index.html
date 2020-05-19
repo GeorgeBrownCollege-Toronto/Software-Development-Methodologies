@@ -147,6 +147,16 @@
     </script></section>
 </section>
 
+<section data-markdown><script type="text/template">
+    ### A `run` command
+    * Pull images from registry if not found locally
+    * Creates a new container
+    * Allocates a read-write filesystem to the container, as its final layer
+    * Docker creates a network interface to connect the container-based
+    * Docker starts the container and executes the sub-command if any 
+    * `exit` to terminate sub-command stops container.
+</script></section>
+
 <section>
     <h2>Docker Architecture</h2>
     <section data-transition="slide">
@@ -185,7 +195,7 @@
         <li>Containers are great for continuous integration and continuous delivery (CI/CD) workflows.</li>
         <li>Docker’s container-based platform allows for highly portable workloads.</li>
         <li>Docker containers can run on a developer’s local laptop, on physical or virtual machines in a data center, on cloud providers, or in a mixture of environments.</li>
-        <li>Docker is lightweight and fast. It provides a viable, cost-effective alternative to hypervisor-based virtual machines</li>
+        <li>Running more workloads on the same hardware makes it perfect for high density environment as well as small and medium deployments.</li>
     </ul>
 </section>
 
