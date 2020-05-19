@@ -76,6 +76,29 @@
 </section>
 
 <section>
+  <h2>Challanges in Agile</h2>
+  <ul>
+    <li>Communication (people and people, people across silos)</li>
+    <li>Time to test and time to release</li>
+    <li>Test driven development and consistent testing</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Tools for Automation</h2>
+  <ul>
+      <li><b>CI/CD</b> — Jenkins, Shippable, Bamboo, Travis-CI, <a href="https://github.com/features/actions" target="_blank">Github Actions</a></li>
+      <li><b>Containerization</b> — Docker, Rocket, Unik</li>
+      <li><b>Orchestration</b> — Kubernetes, Swarm, Mesos</li>
+      <li><b>Deployment</b> — Elastic Beanstalk, Octopus, Vamp</li>
+      <li><b>Test Automation</b> - Selenium, Cucumber, Apache JMeter</li>
+      <li><b>Measurement</b> - NewRelic, Kibana, Datadog</li>
+      <li><b>ChatOps</b> - Hubot, Lita, Cog</li>
+      <li><b>Infrastructure as code</b> - Ansible, Puppet, Chef</li>
+  </ul>
+</section>
+
+<section>
     <h2>What is DevOps?</h2>
     <ul style="list-style-type: none;">
         <li>The term “DevOps” typically refers to the emerging professional movement that advocates a collaborative working relationship between Development and IT Operations, resulting in the fast flow of planned work (i.e., high deploy rates), while simultaneously increasing the reliability, stability, resilience and security of the production environment (Gene Kim).        </li>
@@ -129,16 +152,6 @@
 </section>
 
 <section>
-    <h2>Tools for Automation</h2>
-    <ul>
-        <li><b>CI/CD</b> — Jenkins, Shippable, Bamboo</li>
-        <li><b>Containerization</b> — Docker, Rocket, Unik</li>
-        <li><b>Orchestration</b> — Kubernetes, Swarm, Mesos</li>
-        <li><b>Deployment</b> — Elastic Beanstalk, Octopus, Vamp</li>
-    </ul>
-</section>
-
-<section>
     <h2>Jenkins</h2>
     <section data-transition="slide">
      <img src="jenkins.png" style="box-shadow: none;border: none;">
@@ -153,6 +166,41 @@
 </section>
 
 <section>
+  <h2>Travis-CI</h2>
+  <section data-transition="slide">
+    <img src="travis-ci.png" style="max-width: 80%;max-height: 80%;">
+  </section>
+  <section data-transition="slide">
+    <table>
+      <thead>
+        <tr>
+          <th>Travis-CI</th>
+          <th>Jenkins</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Simple to use with SaaS tools</td>
+          <td>good for control on your data & tools</td>
+        </tr>
+        <tr>
+          <td>Hosted(free for open source projects</td>
+          <td>Open source and can run on-premises</td>
+        </tr>
+        <tr>
+          <td>Simple config with YML file</td>
+          <td>Jobs(also has a YML file</td>
+        </tr>
+        <tr>
+          <td>Great integration with github</td>
+          <td>Github plugin</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</section>
+
+<section>
     <h2>Docker</h2>
     <section data-transition="slide">
       <img src="docker.png">
@@ -162,18 +210,18 @@
             <li>Containerization is a technology that’s been around for a long time, but it’s seen new life with Docker. It packages applications as images that contain everything needed to run them: code, runtime environment, libraries, and configuration. Images run in containers, which are discrete processes that take up only as many resources as any other executable.</li>
         </ul>
         <br/>
-        <p>https://docker-curriculum.com/#introduction</p>
+        <p><a href="../../docker-overview/lecture/index.html" target="_blank">Docker Overview</a></p>
     </section>
     <section>
-      <a href="https://github.com/GeorgeBrownCollege-Toronto/Software-Development-Methodologies/blob/master/notes/overview-of-devops/lab/Docker-Installation.md" target="_blank" >Docker Installation</a>
+      <ul>
+        <li><a href="https://github.com/GeorgeBrownCollege-Toronto/Software-Development-Methodologies/blob/master/notes/overview-of-devops/lab/Docker-Installation.md" target="_blank" >Docker Installation (My version)</a></li>
+        <li><a href="https://docs.docker.com/get-docker/" target="_blank">Docker Installation (Official)</a></li>
+        <li><a href="https://docs.docker.com/get-started/" target="_blank">Getting started with docker</a></li>
+        <li><a href="https://www.youtube.com/watch?v=YFl2mCHdv24" target="_blank">Docker in 12 min</a></li>
+        <li><a href="https://docker-curriculum.com/#introduction" target="_blank">Docker Introduction</a></li>
+      </ul>
     </section>
 </section>
-
-<section>
-    <h2>Continuous Integration and Continuous Delivery</h2>
-    <img src="CI-CD.png" style="max-width: 80%; max-height: 80%;">
-</section>
-
 
 <section>
   <h2>Lab - 1</h2>
@@ -181,6 +229,17 @@
     <li><a href="https://github.com/GeorgeBrownCollege-Toronto/Software-Development-Methodologies/blob/master/notes/overview-of-devops/lab/node-react-ci-cd.md" target="_blank">Build a Node.js and React app with npm</a></li>
   </ul>
   <p>Submit a word file with screen shots of the Jenkins output</p>
+</section>
+
+<section>
+  <h2>What did we learn from Lab - 1</h2>
+  <ul>
+    <li>Basic configurations of jenkins</li>
+    <li>Setting up Continuous delivery pipeline(CD) in Jenkins</li>
+    <li>Groovy syntax</li>
+    <li>What is "Pipeline as Code" (IaC)</li>
+    <li>Build and deploy code with a CD pipeline</li>
+  </ul>
 </section>
 
 <section>
@@ -193,10 +252,11 @@
 <section>
     <h2>Readings</h2>
     <ul>
-        <li><a href="https://www.docker.com/blog/docker-101-introduction-docker-webinar-recap/">Docker 101</a></li>
-        <li><a href="https://www.oreilly.com/radar/the-evolution-of-devops/">Evoluation Of Docker</a></li>
-        <li><a href="https://docker-curriculum.com/">Docker Curriculumn</a></li>
-        <li><a href="https://www.guru99.com/must-know-linux-commands.html">Must know linux Commands</a></li>
+        <li><a href="https://www.docker.com/blog/docker-101-introduction-docker-webinar-recap/" target="_blank">Docker 101</a></li>
+        <li><a href="https://www.oreilly.com/radar/the-evolution-of-devops/" target="_blank">Evoluation Of Docker</a></li>
+        <li><a href="https://docker-curriculum.com/" target="_blank">Docker Curriculumn</a></li>
+        <li><a href="https://www.guru99.com/must-know-linux-commands.html" target="_blank">Must know linux Commands</a></li>
+        <li><a href="https://stackoverflow.com/questions/32422264/jenkins-vs-travis-ci-which-one-would-you-use-for-a-open-source-project" target="_blank">Choosing CI</a></li>
     </ul>
 </section>
 

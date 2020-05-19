@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title> Software Development Methodologies </title>
+
+    <meta name="author" content="Dhruvin Parikh">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="../../../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../../../reveal.js/css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../../../reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../../../reveal.js/css/print/pdf.css' : '../../../reveal.js/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+      .reveal .slides h1, .reveal .slides h2, .reveal .slides h3 {
+        text-transform: none;
+      }
+
+      .two-column {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .two-column em {
+        margin: 20px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+<!------------------------------------------------------->
+
+
+
+<section data-markdown><script type="text/template">
+
+### Docker Overview
+
+###### Credits : [Docker Docs](https://docs.docker.com/get-started/overview/)
+
+*Dhruvin Parikh, May 2020*
+
+</script></section>
+
+<section>
+    <h2>What is Docker?</h2>
+    <ul style="list-style: none;">
+        <li>Open platform for developing, shipping and running applications.Docker helps to manage infrastructure in the same way you manage our applications.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Technology</h2>
+    <section data-markdown data-transition="slide"><script type="text/template">
+    * Docker is written in `Go` and takes advantage of several features of the Linux kernel to deliver its functionality.
+    </script></section>
+    <section data-markdown data-transition="slide"><script type="text/template">
+    #### Namespaces
+    * Namespaces provides isolated workspaces called *container*.
+    * Each aspect of container runs in seperate namespace and access is limited to namespace.
+    </script></section>
+    <section data-markdown data-transition="slide"><script type="text/template">
+    #### Control groups
+    * Docker Engine on Linux also relies on another technology called control groups (cgroups). A cgroup limits an application to a specific set of resources. Control groups allow Docker Engine to share available hardware resources to containers and optionally enforce limits and constraints. For example, you can limit the memory available to a specific container.
+    </script></section>
+    <section data-markdown data-transition="slide"><script type="text/template">
+    #### Union file systems
+    * Union file systems, or UnionFS, are file systems that operate by creating layers, making them very lightweight and fast. Docker Engine uses UnionFS to provide the building blocks for containers. Docker Engine can use multiple UnionFS variants, including AUFS, btrfs, vfs, and DeviceMapper.
+    </script></section>
+    <section data-markdown data-transition="slide"><script type="text/template">
+        #### Container Format
+        * Docker Engine combines the namespaces, control groups, and UnionFS into a wrapper called a container format. The default container format is `libcontainer`.
+    </script></section>
+</section>
+
+<section>
+    <h2>Docker platform</h2>
+    <ul>
+        <li>Docker provides the ability to package and run an application in a loosely isolated environment called a container. Containers are lightweight because they don’t need the extra load of a hypervisor, but run directly within the host machine’s kernel. This means you can run more containers on a given hardware combination than if you were using virtual machines. You can even run Docker containers within host machines that are actually virtual machines!</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Docker Engine</h2>
+    <section data-transition="slide"> 
+        <img src="engine-components-flow.png">
+    </section>
+    <section data-transition="slide">
+        <ul style="list-style: none;">
+            <li>Docker engine is a client-server applications with:</li>
+        </ul>
+        <ul>
+            <li>A server which is a type of long-running program called a daemon process (the dockerd command).</li>
+            <li>A REST API which specifies interfaces that programs can use to talk to the daemon and instruct it what to do.</li>
+            <li>A command line interface (CLI) client (the docker command).</li>
+        </ul>
+    </section>
+</section>
+
+<section>
+    <h2>Docker objects</h2>
+    <section data-transition="slide">
+        <ul style="list-style: none;">
+            <li>When you use Docker, you are creating and using images, containers, networks, volumes, plugins, and other objects. This section is a brief overview of some of those objects.</li>
+        </ul>
+    </section>
+    <section data-markdown data-transition="slide"><script type="text/template">
+        #### IMAGES
+        * An image is a read-only template with instructions for creating a Docker container.
+        * To build your own image, you create a Dockerfile with a simple syntax for defining the steps needed to create the image and run it. Each instruction in a Dockerfile creates a layer in the image.
+    </script></section>
+    <section data-markdown data-transition="slide"><script type="text/template">
+        #### CONTAINERS
+        * A container is a runnable instance of an image. You can `create`, `start`, `stop`, `move`, or `delete` a container using the Docker API or CLI.
+        * The following command runs an ubuntu container, attaches interactively to your local command-line session, and runs /bin/bash.
+        ```bash
+        $ docker run -i -t ubuntu /bin/bash
+        ```
+    </script></section>
+    <section data-markdown data-transition="slide"><script type="text/template">
+        #### SERVICES
+        * Services allow you to scale containers across multiple Docker daemons, which all work together as a swarm with multiple managers and workers. 
+        * Each member of a swarm is a Docker daemon, and all the daemons communicate using the Docker API.
+    </script></section>
+</section>
+
+<section>
+    <h2>Docker Architecture</h2>
+    <section data-transition="slide">
+        <img src="architecture.svg">
+    </section>
+    <section data-transition="slide">
+       <ul style="list-style: none;">
+           <li>Docker uses a client-server architecture. The Docker client talks to the Docker daemon, which does the heavy lifting of building, running, and distributing your Docker containers. The Docker client and daemon can run on the same system, or you can connect a Docker client to a remote Docker daemon. The Docker client and daemon communicate using a REST API, over UNIX sockets or a network interface.</li>
+       </ul>
+    </section>
+</section>
+
+<section>
+    <h2>Docker Daemon</h2>
+    <ul style="list-style: none;">
+        <li>The Docker daemon (dockerd) listens for Docker API requests and manages Docker objects such as images, containers, networks, and volumes. A daemon can also communicate with other daemons to manage Docker services.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Docker client</h2>
+    <ul style="list-style: none;">
+        <li>The Docker client (docker) is the primary way that many Docker users interact with Docker. When you use commands such as docker run, the client sends these commands to dockerd, which carries them out. The docker command uses the Docker API. The Docker client can communicate with more than one daemon.</li>
+    </ul>
+</section>
+
+<section data-markdown><script type="text/template">
+    ## Docker registries
+    * A Docker registry stores Docker images. Docker Hub is a public registry that anyone can use, and Docker is configured to look for images on Docker Hub by default. You can even run your own private registry. If you use Docker Datacenter (DDC), it includes Docker Trusted Registry (DTR).
+    * `docker run`, `docker pull` and `docker push` are used to pull, run and push images to configured registry.    
+</script></section>
+
+<section>
+    <h2>Application of Docker</h2>
+</section>
+
+<section data-markdown><script type="text/template">
+
+## End
+
+</script></section>
+
+
+
+<!------------------------------------------------------->
+
+
+      </div>
+
+    </div>
+
+    <script src="../../../reveal.js/lib/js/head.min.js"></script>
+    <script src="../../../reveal.js/js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+	math: {
+          mathjax: './lib/MathJax/MathJax.js',
+          config: 'TeX-AMS_SVG-full',
+	},
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../../../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../../../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../../../reveal.js/plugin/math/math.js', async: true },
+           // Zoom in and out with Alt+click
+           { src: "../../../reveal.js/plugin/zoom-js/zoom.js", async: true },
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
