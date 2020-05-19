@@ -1,8 +1,4 @@
----
-layout: documentation
-title: End-to-End Multibranch Pipeline Project Creation
-section: doc
----
+= End-to-End Multibranch Pipeline Project Creation
 
 :toc:
 :toclevels: 3
@@ -163,7 +159,7 @@ process and a "Test" stage to check that the application renders satisfactorily.
 pipeline {
     agent {
         docker {
-            image 'node:6-alpine'
+            image 'node:latest'
             args '-p 3000:3000 -p 5000:5000' // <1>
         }
     }
@@ -273,7 +269,7 @@ so that you end up with:
 pipeline {
     agent {
         docker {
-            image 'node:6-alpine'
+            image 'node:latest'
             args '-p 3000:3000 -p 5000:5000'
         }
     }
@@ -324,7 +320,7 @@ matches the name of the branch that Jenkins is running the build from, then the
 *Notes:*
 * For an explanation of the `input message` steps, refer to annotation *4* of
   the Declarative Pipeline at the
-  link:../build-a-node-js-and-react-app-with-npm/#add-a-final-deliver-stage-to-your-pipeline[``Add
+  link:./node-react-ci-cd.md/#add-a-final-deliver-stage-to-your-pipeline[``Add
   a final deliver stage...'' section of the Build a Node.js and React app]
   tutorial.
 * For an explanation of the `deliver-for-development.sh`,
