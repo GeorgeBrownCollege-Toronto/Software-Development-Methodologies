@@ -502,7 +502,192 @@
 </section>
 
 <section>
-    <h2>Lab Test - 2</h2>
+    <h2>Lab Test 2 - <a href="https://bb-gbc.blackboard.com/webapps/assessment/take/launchAssessment.jsp?course_id=_184318_1&content_id=_5077849_1&mode=cpview">Self Assessment Quiz</a></h2>
+</section>
+
+<section>
+    <h2>Github model for open source</h2>
+    <img src="github-model.png">
+</section>
+
+<section>
+    <h2>Agile Best Practices</h2>
+    <img src="extreme-programming.jpg">
+    <p class="credits">Source : <a href="http://xprogramming.com/what-is-extreme-programming/">http://xprogramming.com/what-is-extreme-programming/</a></p>
+</section>
+
+<section>
+    <h2>Why there is coding standard</h2>
+    <ul>
+        <li>Get your code (patch) accepted </li>
+        <li>Enable team work through readability, conventions</li>           
+        <li>Ease maintenance (40% to 80% of the cost of software through its lifecycle)</li>            
+        <li>Enforce good practice e.g. reduce complexity</li>            
+        <li>Improve quality</li>            
+        <li>Work well with automated tools (e.g. counting lines of code, diffs)</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Limitations of versioning system</h2>
+    <ul>
+        <li>Versioning is not same as code review</li>
+        <li>Pull requests are not good enough to enforce rules</li>
+        <li>GitHub (a hosted site) has plugins, not necessarily free e.g. <a href="https://github.com/marketplace/codacy">Codacy</a> is free for Open Source (public) projects, same as GitHub</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Code Review tools</h2>
+    <ul>
+        <li><a href="https://www.softwaretestinghelp.com/code-review-tools/">Several tools</a> to considered</li>
+        <li><a href="https://www.gerritcodereview.com">Gerrit</a> is open and compatible with <code>git</code></li>
+        <ul>
+            <li>Created for the Android project</li>
+            <li>Used by big open source projects such as MediaWiki and Qt</li>
+        </ul>
+    </ul>
+</section>
+
+<section>
+    <h2>Gerrit</h2>
+    <section data-transition="slide">
+        <h4>Discuss code</h4>
+        <img src="gerrit-discuss-code.png">
+    </section>
+    <section data-transition="slide">
+        <h4>Code Review</h4>
+        <div class="two-column">
+            <div style="width:450px">
+                <img src="intro-quick-review-line-comment.jpg" style="width: 450px; height:300px;box-shadow: none; border: none;">
+                <p class="credits">Image : <a href="https://git.eclipse.org/r/Documentation/intro-quick.html">https://git.eclipse.org/r/Documentation/intro-quick.html</a></p>
+            </div>
+            <div data-markdown style="width:350px">
+                * Quality check
+                * After build & test
+                * Automated tools e.g. Gerrit
+            </div>
+        </div>
+    </section>
+    <section>
+        <h4>How gerrit works</h4>
+        <div class="two-column">
+            <div style="width:450px">
+                <img src="intro-quick-central-repo.png" style="width: 450px; height:300px;box-shadow: none; border: none;">
+                <p class="credits">Image : <a href="https://gerrit-documentation.storage.googleapis.com/Documentation/2.16.2/intro-how-gerrit-works.html">https://gerrit-documentation.storage.googleapis.com/Documentation/2.16.2/intro-how-gerrit-works.html</a></p>
+            </div>
+            <div style="width:450px">
+                <img src="intro-quick-central-gerrit.png" style="width: 450px; height:300px;box-shadow: none; border: none;">
+                <p class="credits">Image : <a href="https://gerrit-documentation.storage.googleapis.com/Documentation/2.16.2/intro-gerrit-walkthrough.html">https://gerrit-documentation.storage.googleapis.com/Documentation/2.16.2/intro-gerrit-walkthrough.html</a></p>
+            </div>
+        </div>
+    </section>
+    <section>
+        <h4>Code review workflow</h4>
+        <div class="two-column">
+            <div style="width:450px">
+                <img src="code-review.jpg" style="width: 450px; height:300px;box-shadow: none; border: none;">
+                <p class="credits">Image : <a href="https://subscription.packtpub.com/book/application_development/9781783289479/6/ch06lvl1sec38/gerrit-code-review-roles-and-workflow">source</a></p>
+            </div>
+            <div data-markdown style="width:350px">
+                * Typically integrated with a CI/CD pipeline.
+                * If the code builds, then it’s good to go for review.
+            </div>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2>Refactoring</h2>
+    <section data-transition="slide">
+        <img src="refactoring-n.jpg">
+    </section>
+    <section>
+        <ul>
+            <li>Classic SDLC is linear: write all the code to specs and send it to QA for testing</li>            
+            <li>Refactoring is the idea that code can continuously be rewritten in a better way, do it ASAP, before it is too costly to change anything</li>
+            <li>Reduce code complexity (and improve maintainability)</li>
+            <li>Provide non functional enhancements</li>                
+            <li>Extensibility: re-architect the codebase more effectively</li>
+        </ul>
+    </section>
+</section>
+
+<section>
+    <h2>Test Driven Development</h2>
+    <ul>
+        <li>Avoid regression</li>
+        <li>Easier maintenance and error detection</li>
+        <li>Test bite-sized code</li>
+        <li>Release early and often</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Types of test</h2>
+    <ul>
+        <li>Unit testing (for e.g. <a href="https://github.com/mochajs/mocha">Mocha</a> for JS)</li>
+        <li>Inegration testing</li>
+        <li>System testing</li>
+        <li>Interface testing</li>
+        <li>Acceptance testing</li>
+        <li>Performance testing</li>
+        <li>Stress testing</li>
+        <li>Reliability testing</li>
+    </ul>
+    <p>The list is long...</p>
+</section>
+
+<section>
+    <h2>TDD Process</h2>
+    <ul>
+        <li>Start by adding a test</li>
+        <li>Run all tests and make sure the new one fails</li>
+        <li>Write the code</li>
+        <li>Run all tests</li>
+        <li>Refactor as needed</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Lab test 3 - <a href="">TDD In React</a></h2>
+</section>
+
+<section>
+    <h2>Pair programming</h2>
+    <ul>
+        <li>Gained popularity recently</li>
+        <li>Code quality</li>
+        <li>Developer capacity</li>
+        <li>Developer likes it</li>
+        <li><a href="https://tanzu.vmware.com/content/blog/pair-programming-considered-extremely-beneficial">Pivotal</a> like it</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Practical pair programming</h2>
+    <div class="two-column">
+        <div data-markdown style="width:400px">
+        ##### Original recipe
+        * One computer
+        * 2 keyboards
+        * 2 mouses
+        * 2 chairs
+        * 2 engineers
+
+        <br/>Do that often, on dedicated workstations.
+        </div>
+        <div data-markdown style="width:500px">
+        ##### Distributed(remote)
+        * Cloud IDEs such as Codenvy (hosted) and *Eclipse Che* (shared on-prem)
+        * IDEs such as MSFT
+        * Desktop sharing like TeamViewer and webconferencing tools (like microsoft teams)
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Lab test - 4 <a href="">Code Review and Pair programming</a></h2>
 </section>
 
 <section data-markdown><script type="text/template">
