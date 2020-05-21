@@ -155,6 +155,11 @@ As the last piece of code, let’s add this to the index.js and open the browser
 ![tdd-13](./tdd-13.png)
 `index.js`
 
+## Submission
+
+* Push the code to github
+* Submit the github repository link on [Blackboard](https://bb-gbc.blackboard.com/webapps/assignment/uploadAssignment?content_id=_5078199_1&course_id=_184318_1&group_id=&mode=cpview)
+
 ### Bonus tip
 
 Because of the way we wrote our tests, we can utilize them as **e2e** tests without adding a single line of code! All we need to do is to remove all the lines related to **MockAxios** and run the tests again! They will now use a real external API. Cool, isn’t it? :)
