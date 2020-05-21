@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Advanced Git</title>
+    <title>Modern Development Practices</title>
 
     <meta name="author" content="Dhruvin Parikh">
 
@@ -63,7 +63,7 @@
 
 ### BCDV 1009 - Software Development Methodologies
 
-#### Advanced Git Concepts
+#### Modern Development Practices
 
 *Dhruvin Parikh, May 2020*
 
@@ -75,8 +75,10 @@
   * `git` commands that are needed for daily work
   * Interactive `rebase`
   * Basic `git` workflows
-  * Explanation of `git` version graph 
-  * Lab Test - 2
+  * Explanation of `git` version graph
+  * Code Review and Paired Prgramming
+  * Introduction to Test Driven Development 
+  * Lab Test - 2, 3, 4
 </script></section>
 
 <section id="agenda" data-markdown><script type="text/template">
@@ -120,8 +122,8 @@
     <img src="repository-structure-01.png" style="width: 200px; height:300px;">
     <div data-markdown><script type="text/template">
     *   A **Git Repository** is created by :
-        *   `git init`
-        *   `git clone` 
+     *  `git init`
+     *  `git clone` 
     </script></div>
 </section>
 
@@ -275,6 +277,230 @@
             git tag -s <tagname>
             ```
     </script></section>
+</section>
+
+<section>
+    <h2>Merge</h2>
+    <section data-transition="slide">
+        <img src="merge-01.png" style="border: none; box-shadow: none;max-width: 50%;max-height: 50%;">
+        <p>Q: What is the result of merging the <i>featureX</i> branch into the master branch? Which branch is updated?</p>
+    </section>
+    <section data-transition="slide">
+        <div class="two-column">
+            <div>
+                <img src="merge-02.png" style="border: none; box-shadow: none;max-width: 500px;max-height: 300px">
+            </div>
+            <div data-markdown style="width: 600px;">
+                `git merge featureX` :
+                * Merges *featureX* into the current branch (master).
+                * Creates a merge commit (commit with more than one parent).
+                * The current branch is updated.
+            </div>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2>Merge - Fast-Forward</h2>
+    <div class="two-column">
+        <div>
+            <img src="merge-ff-01.png" style="border: none; box-shadow: none;max-width: 300px;max-height: 300px">
+        </div>
+        <div data-markdown style="width: 600px;">
+        * **Fast forward merge**
+            * Just moves the branch pointer.
+            * No creation of a merge commit.
+            * The creation of a merge commit can be enforced by:
+        ```bash
+        git merge --no-ff
+        ```
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Cherry-Pick</h2>
+    <section data-transition="slide">
+    <div class="two-column">
+        <div>
+            <img src="cherry-pick-01.png" style="border: none; box-shadow: none;max-width: 300px;max-height: 300px">
+        </div>
+        <div data-markdown style="width: 600px;">
+        * Imagine that:
+            * commit **E** implements a feature
+            * commit **F** is bug-fix
+            * the bug-fix **F** is needed in master        
+        </div>
+    </div>
+    </section>
+    <section data-transition="slide">
+        <div class="two-column">
+            <div>
+                <img src="cherry-pick-02.png" style="border: none; box-shadow: none;max-width: 300px;max-height: 300px"> 
+            </div>
+            <div data-markdown style="width: 600px;">
+                * apply changes done by the commit that is cherry-picked to a new base.
+                * commit message is preserved.
+                * new commit has no parent relation to the commit that was cherry-picked.
+                * `cherry-pick` can fail with conflict.
+            </div>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2>Rebase</h2>
+    <section data-transition="slide">
+    <div class="two-column">
+        <div>
+            <img src="rebase-01.png" style="border: none; box-shadow: none;max-width: 300px;max-height: 300px"> 
+        </div>
+        <div data-markdown style="width: 600px;">
+            * redo the work that was done in the *featureX* branch on top of the master branch
+        </div>
+    </div>
+    </section>
+    <section data-transition="slide">
+        <div class="two-column">
+            <div>
+                <img src="rebase-02.png" style="border: none; box-shadow: none;max-width: 300px;max-height: 300px"> 
+            </div>
+            <div data-markdown style="width: 600px;">
+                * rebases the current branch to a another base commit
+                * rebase = series of cherry-picks
+                * `git rebase master` rebases all commits of the *featureX* branch onto the master branch.
+            </div>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2>Merge v/s Rebase</h2>
+    <section data-transition="slide">
+    <div class="two-column">
+        <div style="width:450px">
+            <p>fetch > merge > push</p>
+            <img src="fetch-merge-push.png" style="width: 300px; height:400px;box-shadow: none; border: none;">
+        </div>
+        <div style="width:450px">
+            <p>fetch > rebase > push</p>
+            <img src="fetch-rebase-push.png" style="width: 400px; height:400px;box-shadow: none; border: none;">
+        </div>
+    </div>
+    </section>
+    <section data-transition="slide">
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>Two commits, commit <b>C</b> which implements the feature and the merge commit <b>E</b>.</li>
+                            <li>Diverged history.</li>
+                            <li>From the history one can see that commit <b>C</b> was originally developed based on commit <b>B</b>.</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Single commit, it looks like commit <b>C</b> was developed based on commit <b>D</b>.</li>
+                            <li>Linear history.</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+</section>
+
+<section>
+    <h2>Interactive Rebase</h2>
+    <section data-transition="slide">
+        <div class="two-column">
+            <div style="width:450px">
+                <p>Before interactive rebase</p>
+                <img src="before-rebase-i.png" style="width: 300px; height:400px;box-shadow: none; border: none;">
+            </div>
+            <div style="width:450px">
+                <p data-markdown>`git rebase -i HEAD~3`</p>
+                <img src="after-rebase-i.png" style="width: 400px; height:400px;box-shadow: none; border: none;">
+            </div>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2>Revert</h2>
+    <section data-transition="slide">
+        <div class="two-column">
+            <div style="width:450px">
+                <img src="revert-01.png" style="width: 300px; height:400px;box-shadow: none; border: none;">
+            </div>
+            <div data-markdown style="width:450px">
+                * `git revert` undos the changes that have been done by a commit by creating a new commit that applies the inverted changes.
+                </div>
+        </div>
+    </section>
+    <section data-transition="slide">
+        <div class="two-column">
+            <div style="width:450px">
+                <img src="revert-02.png" style="width: 300px; height:400px;box-shadow: none; border: none;">
+            </div>
+            <div data-markdown style="width:450px">
+                * `git revert` may fail due to conflicts. After resolving the conflicts and staging the conflict resolution you can create the revert commit by `git commit`.
+            </div>
+        </div>
+    </section>
+</section>
+
+<section>
+    <h2>Reset v/s Revert v/s Checkout</h2>
+    <table>
+        <thead>
+        <tr>
+        </tr>
+        </thead>
+        <thead>
+        <tr>
+        <td><code>reset</code></td>
+        <td>Commit</td>
+        <td>Discard commits/throw uncommited changes</td>
+        </tr>
+        <tr>
+        <td><code>reset</code></td>
+        <td>File</td>
+        <td>Unstage a file</td>
+        </tr>
+        <tr>
+        <td><code>checkout</code></td>
+        <td>Commit</td>
+        <td>Switch between branches</td>
+        </tr>
+        <tr>
+        <td><code>checkout</code></td>
+        <td>File</td>
+        <td>Discard changes in the working directory</td>
+        </tr>
+        <tr>
+        <td><code>revert</code></td>
+        <td>Commit</td>
+        <td>Undo commits</td>
+        </tr>
+        <tr>
+        <td><code>revert</code></td>
+        <td>File</td>
+        <td>(N/A)</td>
+        </tr>
+        </thead>
+        </table>
+</section>
+
+<section>
+    <h2>Lab Test - 2</h2>
 </section>
 
 <section data-markdown><script type="text/template">
