@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Advanced Git</title>
+
+    <meta name="author" content="Dhruvin Parikh">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="../../../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../../../reveal.js/css/theme/black.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../../../reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../../../reveal.js/css/print/pdf.css' : '../../../reveal.js/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+      .reveal .slides h1, .reveal .slides h2, .reveal .slides h3 {
+        text-transform: none;
+      }
+
+      .two-column {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .two-column em {
+        margin: 20px;
+      }
+
+      .credits {
+        font-size: small;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+<!------------------------------------------------------->
+
+
+
+<section data-markdown><script type="text/template">
+
+### BCDV 1009 - Software Development Methodologies
+
+#### Advanced Git Concepts
+
+*Dhruvin Parikh, May 2020*
+
+</script></section>
+
+<section id="class plan" data-markdown><script type="text/template">
+  ### Content
+  * Advanced `git` concepts
+  * `git` commands that are needed for daily work
+  * Interactive `rebase`
+  * Basic `git` workflows
+  * Explanation of `git` version graph 
+  * Lab Test - 2
+</script></section>
+
+<section id="agenda" data-markdown><script type="text/template">
+  ### Agenda
+  * `git` repository structure
+  * `merge`, `rebase` and `cherry-pick`
+  * Interactive `rebase`
+</script></section>
+
+<section>
+    <h2>Distributed versioning systems</h2>
+    <section data-transition="slide">
+    <div class="two-column">
+        <div>
+            <p>Distributed</p>
+            <img src="distributed.png" style="width: 300px; height:400px;">
+        </div>
+        <div>
+            <p>Centralised</p>
+            <img src="centralised.png" style="width: 400px; height:400px;">
+        </div>
+    </div>
+    <p class="credits">Image Credits : <a href="https://www.incredible-web.com/blog/revision-control-systems/">https://www.incredible-web.com/blog/revision-control-systems/</a></p>
+    </section>
+    <section data-transition="slide">
+        <ul style="list-style: none;">
+            <li>Distributed means</li>
+            <ul>
+                <li>Each developer has a complete, local repository</li>
+                <li>Technically the central repository is not different from the local repositories</li>
+                <li>Easy offline usage</li>
+                <li>Easy to branch a project</li>
+                <li>Examples: Git, Mercurial, Bazaar</li>
+            </ul>
+        </ul>
+    </section>
+</section>
+
+<section>
+    <h2>Git Repository Structure</h2>
+    <img src="repository-structure-01.png" style="width: 200px; height:300px;">
+    <div data-markdown><script type="text/template">
+    *   A **Git Repository** is created by :
+        *   `git init`
+        *   `git clone` 
+    </script></div>
+</section>
+
+<section>
+    <h2>Git Repository Structure</h2>
+        <img src="repository-structure-02.png" style="width: 200px; height:300px;">
+        <div data-markdown><script type="text/template">
+        * `.git` folder is git repository
+        * `.git` folder contains the full version database.
+        * Many files in the `.git` folder are human-readable.                
+        </script></div>
+</section>
+
+<section>
+    <h2>Git Repository Structure</h2>
+        <img src="repository-structure-03.png" style="width: 200px; height:300px;">
+        <div data-markdown><script type="text/template">
+            * files/folders next to the `.git` folder are the working tree
+            * A **Git Repository** has at most one working tree.                
+        </script></div>
+</section>
+
+<section>
+    <h2>Git Repository Structure</h2>
+        <img src="repository-structure-04.png" style="width: 250px; height:300px;">
+        <div data-markdown><script type="text/template">
+            * A **Git repository** without working tree is called *bare repository* (used on servers).                
+        </script></div>
+</section>
+
+<section>
+    <h2>Commit Object Structure</h2>
+    <section data-transition="slide">
+        <img src="commit-structure.png" style="border: none; box-shadow: none;max-width: 80%;max-height: 80%;">
+    </section>
+    <section data-markdown data-transition="slide"><script type="text/template">
+        **SHA1**
+        * globally unique commit ID
+        * 40-digit hexadecimal number
+        * function of the commit object content
+        * shown in `git` log output etc.
+        <br/>To inspect a commit use
+        * `git show <SHA1>`
+        * `git show --format=fuller <SHA1>`
+        * Once created commits are immutable.
+    </script></section>
+</section>
+
+<section data-markdown><script type="text/template">
+    ### Author v/s commiter
+    * Git sets author and committer based on the `user.name` and `user.email` config values.
+            Author :
+    * person who wrote the patch
+    * Author can be explicitly set on commit: `git commit --author=<author>`        
+    Committer :
+    * person who created the commit, e.g. project maintainer who applied the patch
+</script></section>
+
+<section>
+    <h2>Amend commit</h2>
+    <section>
+        <img src="amend-commit.png" style="border: none; box-shadow: none;max-width: 80%;max-height: 80%;">
+    </section>
+    <section data-markdown><script type="text/template">
+        * `git commit --amend` rewrites last commit:
+            * creates a sibling commit **D**
+            * creates a sibling commit **D** of the last commit **C** and resets the current branch to it 
+            * the old commit message is preserved, but can be edited if wanted
+            * the old commit **C** is still available in the repository
+            * rewrites the history of the branch              
+    </script></section>
+</section>
+
+<section>
+    <h2>Resetting Branches</h2>
+    <section>
+    <div class="two-column">
+        <div>
+            <img src="reset-01.png" style="width: 400px;height: 425px; box-shadow: none; border: none;">
+                        <p>HEAD is at tip of branch</p>
+        </div>
+        <div>
+            <img src="reset-02.png" style="width: 400px;height: 425px; box-shadow: none; border: none;">
+                        <p>After reset</p>
+        </div>
+    </div>
+    </section>
+    <section data-markdown><script type="text/template">
+        * Branches can be moved “manually” by `git reset`
+        ```bash
+        git reset B
+        ```
+        * Updates the current branch to point to commit **B**.
+        * Commit **C** and **D** are no longer part of the history of the master branch.
+    </script></section>
+</section>
+
+<section data-markdown><script type="text/template">
+    ### Resetting Branches
+    
+    ```bash
+    git reset --hard
+    ```
+    * Discard all local modifications
+    ```bash
+    git reset --soft
+    ```
+    * Squash commits
+    ```bash
+    git reset --mixed
+    ```
+     * Split commits
+</script></section>
+
+<section data-markdown><script type="text/template">
+    ### Resetting Branches
+
+    `git reset` | branch | index | working tree
+    --- | --- | --- | ---
+    `--soft` | Yes | no | no
+    `--mixed` (Default) | Yes | Yes | no
+    `--hard` | Yes | Yes | Yes
+</script></section>
+
+<section>
+    <h2>New Commit after reset</h2>
+    <img src="new-commit.png" style="width: 300px;height:350px; box-shadow: none;border: none;">
+    <ul>
+        <li>The new commit becomes successor of the commit to which the current branch points.</li>
+        <li>The current branch is updated.</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Tag</h2>
+    <section data-transition="slide">
+        <img src="tag.png" style="border: none;box-shadow: none;width: 450px; height:450px">
+    </section>
+    <section data-markdown data-transition="slide"><script type="text/template">
+        * A **Tag** allows to tag a specific poin in version history
+            * lightweight tags (just a pointer to a commit) 
+            ```bash
+            git tag <tagname>
+            ```
+            * annotated tags (full Git object, allows tags to have a message) 
+            ```bash
+            git tag -a <tagname>
+            ```
+            * signed tags (tag with signature) 
+            ```bash
+            git tag -s <tagname>
+            ```
+    </script></section>
+</section>
+
+<section data-markdown><script type="text/template">
+
+## End
+
+</script></section>
+
+
+
+<!------------------------------------------------------->
+
+
+      </div>
+
+    </div>
+
+    <script src="../../../reveal.js/lib/js/head.min.js"></script>
+    <script src="../../../reveal.js/js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+	math: {
+          mathjax: './lib/MathJax/MathJax.js',
+          config: 'TeX-AMS_SVG-full',
+	},
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../../../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../../../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../../../reveal.js/plugin/math/math.js', async: true },
+           // Zoom in and out with Alt+click
+           { src: "../../../reveal.js/plugin/zoom-js/zoom.js", async: true },
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
