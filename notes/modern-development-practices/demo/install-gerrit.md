@@ -22,10 +22,10 @@ You also have to decide where to store your server side git repositories. This c
 Initialize a new site directory by running the init command, passing the path of the site directory to be created as an argument to the '-d' option. Its recommended that Gerrit Code Review be given its own user account on the host system:
 
 ```bash
-  sudo adduser gerrit
-  sudo su gerrit
+  $ sudo adduser gerrit
+  $ sudo su gerrit
 
-  java -jar gerrit.war init -d /path/to/your/gerrit_application_directory
+  $ java -jar gerrit.war init -d /path/to/your/gerrit_application_directory
 ```
 
 >NOTE
@@ -100,6 +100,16 @@ Host    192.168.2.10
 ```bash
 ssh -p 29418 sshusername@hostname
 ```
+
+#### For Windows
+
+[Installation on Windows](https://gerrit-documentation.storage.googleapis.com/Documentation/3.1.4/install.html#installation_on_windows)
+
+#### For Window Service
+
+[Install the daemon as Windows Service
+](https://gerrit-documentation.storage.googleapis.com/Documentation/3.1.4/install.html#_install_the_daemon_as_windows_service)
+
 
 #### Resources
 * [Install Gerrit](https://gerrit-documentation.storage.googleapis.com/Documentation/3.1.4/install.html)
