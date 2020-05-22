@@ -9,7 +9,7 @@
 
 * Both the developers can start working on Idea in separate feature branches.
 
-* Once you are done with feature; create a pull request, let it pass the build in jenkins, let your peer review the code and merge the pull-request to the master branch if stuff works fine.
+* Once you are done with feature; create a pull request, let your peer review the code and merge the pull-request to the master branch if stuff works fine.
 
 * Make a submission to the [blackboard](https://bb-gbc.blackboard.com/webapps/assignment/uploadAssignment?content_id=_5078161_1&course_id=_184318_1&group_id=&mode=cpview) with repository URL.(One submission per group).
 
