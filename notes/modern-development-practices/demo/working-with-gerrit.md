@@ -48,5 +48,3 @@ $ scp -p -P 29418 <sshusername>@<hostname>:hooks/commit-msg <repository-name>/.g
 $ chmod u+x .git/hooks/commit-msg
 ```
 
-
-
