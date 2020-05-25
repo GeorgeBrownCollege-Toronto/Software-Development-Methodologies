@@ -1,0 +1,422 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title> Final Exam Review </title>
+
+    <meta name="author" content="Dhruvin Parikh">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="../../../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../../../reveal.js/css/theme/beige.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../../../reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../../../reveal.js/css/print/pdf.css' : '../../../reveal.js/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+      .reveal .slides h1, .reveal .slides h2, .reveal .slides h3 {
+        text-transform: none;
+      }
+
+      .two-column {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .two-column em {
+        margin: 20px;
+      }
+
+      .credits {
+        font-size: small;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+<!------------------------------------------------------->
+
+
+
+<section data-markdown><script type="text/template">
+
+### Software Development Methodologies
+
+##### Final Exam Overview
+
+*Dhruvin Parikh, May 2020*
+
+</script></section>
+
+<section id="agenda" data-markdown><script type="text/template">
+  ## Agenda
+  * Advanced `git` commands and workflow
+  * DevOps life cycle and tools
+  * Test Driven Development
+</script></section>
+
+<section>
+  <section data-transition="slide">
+    <h2>Source Version Control</h2>
+  </section>
+  <section data-transition="slide">
+    <h2>Why?</h2>
+    <ul>
+      <li>1 lone wolf does not need version control (well may be for rollbacks & back-up)</li>
+      <li>Remote teams can use emails and attachments (for patches), can they?</li>        
+      <li>How to coordinate a dev team working on the same codebase?</li>
+      <li>How to manage massively distributed development projects like open source?</li>
+    </ul>
+  </section>
+  <section data-transition="slide">
+    <h2>Chronology of Version Control Systems</h2>
+    <img src="scmhistory.png" width="600px">
+    <p class="credits" target="_blank"><a href="http://blog.plasticscm.com/2010/11/version-control-timeline.html">Image Credits</a></p>
+  </section>
+  <section data-transition="slide">
+    <h2>Centralised Version control</h2>
+    <div class="two-column">
+      <div>
+        <img src="version-control-fig2.png">
+      </div>
+      <div>
+        <ul>
+          <li>You commit</li>
+          <li>They update</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section data-transition="slide">
+    <h2>Decentralised Version control</h2>
+    <div class="two-column">
+      <div>
+        <img src="version-control-fig3.png">
+      </div>
+      <div>
+        <ul>
+          <li>You commit</li>
+          <li>You push</li>
+          <li>They pull</li>
+          <li>They update</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  <section data-transition="slide">
+    <h2>SVN</h2>
+    <ul>
+      <li>Software versioning and revision control system distributed as open source under the Apache License.</li>
+      <li>Has only one single place for the full version history of the software.</li>
+    </ul>
+  </section>
+  <section data-transition="slide">
+    <h2><code>git</code> SCM</h2>
+    <ul>
+      <li><code>git</code> is decentralised version control system</li>
+      <li>Every developer's working copy of the code is also a repository that can contain the full history of all changes.</li>
+      <li><code>git</code> has been designed with performance, security and flexibility in mind.</li>
+    </ul>
+  </section>
+  <section data-transition="slide">
+    <h2>The main component of <code>git</code> repository</h2>
+    <img src="git-repository.svg" style="border: none; box-shadow: none;">
+  </section>
+  <section>
+    <h2>Open Source Development Process</h2>
+    <a href="https://youtu.be/Tyd0FO0tko8">https://youtu.be/Tyd0FO0tko8</a>
+  </section>
+</section>
+
+<section>
+  <h2><code>git checkout</code></h2>
+  <section data-transition="slide">
+  <ul>
+    <li>moves <b>HEAD</b> ref point to specified commit</li>
+  </ul>
+  <img src="git-sequence-transparent.png" style="border:none;box-shadow: none;">
+  <br/>
+  <ul>
+    <li><code>git checkout b</code></li>
+  </ul>
+  <br/>
+  <img src="git-after-checkout.png" style="border:none;box-shadow: none;">
+  </section>
+  <section data-transition="slide">
+    <ul>
+      <li>A file level checkout will change the file's contents to those of the specific commit.</li>
+      <li><code>git checkout HEAD~2 foo.py</code></li>
+    </ul>
+    <img src="git-checkout-file.svg" height="300px" style="border:none;box-shadow: none;">
+  </section>
+</section>
+
+<section>
+  <h2><code>git reset</code></h2>
+  <section data-transition="slide">
+  <div class="two-column">
+    <div>
+      <img src="git-reset.png" width="400px" height="450px" style="border:none;box-shadow: none;">
+    </div>
+    <div>
+      <ul>
+        <li><code>git checkout hotfix</code></li>
+        <li><code>git reset HEAD~2</code></li>
+      </ul>
+    </div>
+  </div>
+  </section>
+  <section data-transition="slide">
+    <ul>
+      <li>file-path invocation updates the staged snapshot to match the version from the specified commit.</li>
+    </ul>
+    <img src="git-reset-file.svg" height="400px" width="500px" style="border:none;box-shadow: none;">
+  </section>
+</section>
+
+<section>
+  <h2><code>git revert</code></h2>
+  <section data-transition="slide">
+    <div class="two-column">
+      <div>
+        <img src="git-revert-commit.svg" height="400px" width="400px" style="border:none;box-shadow: none;">
+      </div>
+      <div>
+        <ul>
+          <li><code>git checkout hotfix</code></li>
+          <li><code>git revert HEAD~2</code></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</section data-transition="slide">
+
+<section>
+  <h2><code>git merge</code></h2>
+  <ul>
+    <li><code>git checkout feature</code></li>
+    <li><code>git merge master</code></li>
+  </ul>
+  <div class="two-column">
+    <div>
+      <img src="git-merge-before.svg" height="500px" width="400px" style="border:none;box-shadow: none;">
+    </div>
+    <div>
+      <img src="git-merge-after.svg" height="500px" width="400px" style="border:none;box-shadow: none;">
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><code>git rebase</code></h2>
+  <ul>
+    <li><code>git checkout feature</code></li>
+    <li><code>git rebase master</code></li>
+  </ul>
+  <div class="two-column">
+    <div>
+      <img src="git-merge-before.svg" height="500px" width="400px" style="border:none;box-shadow: none;">
+    </div>
+    <div>
+      <img src="git-rebase-after.svg" height="500px" width="400px" style="border:none;box-shadow: none;">
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Interactive rebase</h2>
+  <div class="two-column">
+    <div>
+      <img src="git-i-rebase.svg" height="400px" width="300px" style="border:none;box-shadow: none;">
+    </div>
+    <div>
+      <ul>
+        <li><code>git checkout feature</code></li>
+        <li><code>git rebase -i master</code></li>
+      </ul>
+      <div data-markdown>
+        ```bash
+        pick 33d5b7a Message for commit #1
+        pick 9480b3d Message for commit #2
+        pick 5c67e61 Message for commit #3
+        ```
+        ```bash
+        pick 33d5b7a Message for commit #1
+        fixup 9480b3d Message for commit #2
+        pick 5c67e61 Message for commit #3
+        ```
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2><code>git cherry-pick</code></h2>
+  <ul>
+    <li>initial branch state</li>
+  </ul>
+  <div data-markdown>
+      ```bash
+      a - b - c - d   Master
+         \
+           e - f - g Feature
+      ```
+  </div>
+  <ul style="list-style-type: none;">
+    <li>When executed the following command:</li>
+    <ul>
+      <li><code>git checkout master</code></li>
+      <li><code>git cherry-pick f</code></li>
+    </ul>
+  </ul>
+  <div data-markdown>
+    ```bash
+    a - b - c - d - f   Master
+         \
+           e - f - g Feature
+    ```
+  </div>
+</section>
+
+<section>
+  <h2>Code Review tool</h2>
+  <ul style="list-style-type: none;">
+    <li>Gerrit</li>
+    <ul>
+      <li>Open source</li>
+      <li>Manages workflow</li>
+      <li><code>git</code> compatible</li>
+      <li>Quality check.</li>
+      <li>Automate test after build</li>
+      <li>Typically code reviewed after build passes</li>
+    </ul>
+  </ul>
+
+</section>
+
+<section>
+  <h2>Test Driven Development</h2>
+  <div class="two-column">
+    <div style="width: 450px;">
+      <ul style="list-style-type: none;">
+        <li>Why?</li>
+        <ul>
+          <li>Avoid regressions</li>
+          <li>Easier maintenance and error detection</li>
+          <li>Release early and often</li>
+        </ul>
+      </ul>
+    </div>
+    <div style="width: 450px;">
+      <ul style="list-style-type: none;">
+        <li>Process</li>
+        <ul>
+          <li>Add test</li>
+          <li>Run and make new tests fail</li>
+          <li>Write code</li>
+          <li>Run all tests</li>
+          <li>Refactor as needed</li>
+        </ul>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Dev(lopers) And Op(eration)s</h2>
+</section>
+
+<section>
+  <h2>DevOps Life cycle</h2>
+  <img src="Devops-toolchain.svg" style="border:none;box-shadow: none;height:450px">
+  <p class="credits"><a href="https://en.wikipedia.org/wiki/File:Devops-toolchain.svg">Image credits</a></p>
+</section>
+
+<section>
+  <h2>CI/CD tool</h2>
+  <ul style="list-style-type: none;">
+    <li>Jenkins</li>
+    <ul>
+      <li>Setup continuous delivery and continuous integration pipeline</li>
+      <li>Uses Pipeline as Code (IaC)</li>
+      <li>Build, test and deploy code</li>
+      <li>Uses groovy syntax for writing pipeline code (although YML plugin is available)</li>
+    </ul>
+  </ul>
+  <br/>
+  <i>How does CD help <b>SCRUM</b> teams?</i>
+</section>
+
+<section data-markdown><script type="text/template">
+
+## End
+
+*All The Best*
+
+</script></section>
+
+
+
+<!------------------------------------------------------->
+
+
+      </div>
+
+    </div>
+
+    <script src="../../../reveal.js/lib/js/head.min.js"></script>
+    <script src="../../../reveal.js/js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+	math: {
+          mathjax: './lib/MathJax/MathJax.js',
+          config: 'TeX-AMS_SVG-full',
+	},
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../../../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../../../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../../../reveal.js/plugin/math/math.js', async: true },
+           // Zoom in and out with Alt+click
+           { src: "../../../reveal.js/plugin/zoom-js/zoom.js", async: true },
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>
