@@ -6,7 +6,7 @@ Dev Ops - Jenkins, Docker, TDD in React and other Blockchain Frameworks
 
 To view all slides locally
 
-`git clone https://github.com/Software-Development-Methodologies.git`
+`git clone https://github.com/GeorgeBrownCollege-Toronto/Software-Development-Methodologies.git`
 
 Then go into the directory and init the submodules:
 
