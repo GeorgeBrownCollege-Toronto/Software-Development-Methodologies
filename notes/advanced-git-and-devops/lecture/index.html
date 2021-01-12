@@ -1,0 +1,899 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>advanced git concepts and devops</title>
+
+    <meta name="author" content="Dhruvin Parikh">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="stylesheet" href="../../../reveal.js/css/reveal.css">
+    <link rel="stylesheet" href="../../../reveal.js/css/theme/solarized.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="../../../reveal.js/lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? '../../../reveal.js/css/print/pdf.css' : '../../../reveal.js/css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal.js/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+      .reveal .slides h1, .reveal .slides h2, .reveal .slides h3 {
+        text-transform: none;
+      }
+
+      .two-column {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .two-column em {
+        margin: 20px;
+      }
+
+      .reveal .big-and-bold {
+        font-weight: bold;
+        font-size: 135%;
+      }
+
+      .reveal .shrunk-a-bit {
+        font-size: 90%;
+      }
+
+      .reveal .shrunk-a-bit pre {
+        width: 100%;
+      }
+
+      .reveal pre {
+        width: 100%;
+      }
+
+      .reveal .highlight {
+        color: yellow;
+        font-weight: bold;
+      }
+
+      .reveal .highlightRed {
+        color: red;
+        font-weight: bold;
+      }
+
+      .reveal .highlightGreen {
+        color: green;
+        font-weight: bold;
+      }
+
+      .left {
+        left:-8.33%;
+        text-align: left;
+        float: left;
+        width:50%;
+        z-index:-10;
+      }
+
+      .right {
+        left:31.25%;
+        top: 75px;
+        text-align: left;
+        float: right;
+        z-index:-10;
+        width:50%;
+      }
+
+      .credits {
+        font-size: small;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="reveal">
+      <div class="slides">
+
+<!------------------------------------------------------->
+
+
+
+<section data-markdown><script type="text/template">
+
+### BCDV 1009 - Software Development Methodologies
+
+#### advanced `git` commands and DevOps
+
+*Dhruvin Parikh, January 2021*
+
+</script></section>
+
+<section id="class plan" data-markdown><script type="text/template">
+  ### Class Plan
+  * Frequently used `git` commands
+  * Lab Test - 1
+  * Introduction to DevOps
+  * Best tools used in DevOps
+  * Docker and its application in DevOps
+  * Lab Test - 2
+</script></section>
+
+<section>
+  <h2>Distributed versioning systems</h2>
+</section>
+
+<section>
+  <section data-transition="slide">
+  <div class="two-column">
+      <div class="right">
+          <p class="left" >Distributed</p>
+          <img src="distributed.png" style="width: 300px; height:400px;">
+      </div>
+      <div class="left">
+          <p class="left">Centralised</p>
+          <img src="centralised.png" style="width: 400px; height:400px;">
+      </div>
+  </div>
+  <p class="credits">Image Credits : <a target="_blank" href="https://www.incredible-web.com/blog/revision-control-systems/">https://www.incredible-web.com/blog/revision-control-systems/</a></p>
+  </section>
+</section>
+
+<section>
+  <ul style="list-style: none;">
+    <h3>Distributed means</h3>
+    <ul>
+        <li>Each developer has a complete, local repository</li>
+        <li>Technically the central repository is not different from the local repositories</li>
+        <li>Easy offline usage</li>
+        <li>Easy to branch a project</li>
+        <li>Examples: Git, Mercurial, Bazaar</li>
+    </ul>
+</ul>
+</section>
+
+<section>
+
+  <p data-markdown>
+  ## Git Repository Structure
+  </p>
+</section>
+
+<section>
+  
+  <div class="left">
+      <img style="float: left; width:300px" src="repository-structure-01.png" />
+  </div>
+  
+  <div class="right"><p data-markdown>
+    A **Git Repository** is created by :
+    * `git init`
+    * `git clone`
+  </p></div>
+  
+  </section>
+
+<section>
+
+  <div class="left">
+      <img style="float: left; width:300px" src="repository-structure-02.png" />
+  </div>
+  
+  <div class="right"><p data-markdown>
+    * `.git` folder is git repository
+      * `.git` folder contains the full version database.
+      * Many files in the `.git` folder are human-readable.
+  </p></div>
+  
+  </section>
+
+  <section>
+
+    <div class="left">
+        <img style="float: left; width:300px" src="repository-structure-03.png" />
+    </div>
+    
+    <div class="right"><p data-markdown>
+      * files/folders next to the `.git` folder are the working tree
+      * A **Git Repository** has at most one working tree.  
+    </p></div>
+    
+    </section>
+
+    <section>
+
+      <div class="left">
+          <img style="float: left; width:300px" src="repository-structure-04.png" />
+      </div>
+      
+      <div class="right"><p data-markdown>
+        * A **Git repository** without working tree is called *bare repository* (used on servers).  
+      </p></div>
+      
+      </section>
+
+      <section>
+
+        <p data-markdown>
+        ## Git Commit Structure
+        </p>
+      </section>
+
+<section>
+      <img src="commit-structure.png" style="border: none; box-shadow: none;max-width: 80%;max-height: 80%;">
+</section>
+
+<section>
+  <p data-markdown="">
+  ## SHA1
+  * globally unique commit ID
+  * 40-digit hexadecimal number
+  * function of the commit object content
+  * shown in `git` log output etc.
+  <br/>To inspect a commit use
+  * `git show <SHA1>`
+  * `git show --format=fuller <SHA1>`
+  * Once created commits are immutable.
+</p></section>
+
+<section data-markdown><script type="text/template">
+  ### Author v/s commiter
+  * Git sets author and committer based on the `user.name` and `user.email` config values.
+          Author :
+  * person who wrote the patch
+  * Author can be explicitly set on commit: `git commit --author=<author>`        
+  Committer :
+  * person who created the commit, e.g. project maintainer who applied the patch
+</script></section>
+
+<section>
+
+  <p data-markdown>
+  ## Amend Commit
+  </p>
+</section>
+
+<section>
+  <img src="amend-commit.png" style="border: none; box-shadow: none;max-width: 80%;max-height: 80%;">
+</section>
+
+<section data-markdown><script type="text/template">
+       `git commit --amend` rewrites last commit:
+          * creates a sibling commit **D**
+          * creates a sibling commit **D** of the last commit **C** and resets the current branch to it 
+          * the old commit message is preserved, but can be edited if wanted
+          * the old commit **C** is still available in the repository
+          * rewrites the history of the branch              
+  </script></section>
+
+  <section>
+
+    <p data-markdown>
+    ## Resetting Branches
+    </p>
+  </section>
+
+<section>
+  <div class="two-column">
+      <div class="left">
+        <p>HEAD is at tip of branch</p>
+          <img class="left" src="reset-01.png" style="width: 400px;height: 425px; box-shadow: none; border: none;">
+                      
+      </div>
+      <div class="right">
+        <p>After reset</p>
+          <img class="right" src="reset-02.png" style="width: 400px;height: 425px; box-shadow: none; border: none;">
+                      
+      </div>
+  </div>
+</section>
+
+<section data-markdown><script type="text/template">
+  * Branches can be moved “manually” by `git reset`
+  ```bash
+  git reset B
+  ```
+  * Updates the current branch to point to commit **B**.
+  * Commit **C** and **D** are no longer part of the history of the master branch.
+</script></section>
+
+<section data-markdown><script type="text/template">
+  ```bash
+  git reset --hard
+  ```
+  * Discard all local modifications
+  ```bash
+  git reset --soft
+  ```
+  * Squash commits
+  ```bash
+  git reset --mixed
+  ```
+   * Split commits
+</script></section>
+
+<section data-markdown><script type="text/template">
+  `git reset` | branch | index | working tree
+  --- | --- | --- | ---
+  `--soft` | Yes | no | no
+  `--mixed` (Default) | Yes | Yes | no
+  `--hard` | Yes | Yes | Yes
+</script></section>
+
+<section>
+  <h2>New Commit after reset</h2>
+  <div class="two-column">
+      <div class="left">
+        <p>HEAD is at tip of branch</p>
+        <img src="new-commit.png" style="width: 300px;height:350px; box-shadow: none;border: none;">           
+      </div>
+      <div class="right">
+        <ul>
+          <li>The new commit becomes successor of the commit to which the current branch points.</li>
+          <li>The current branch is updated.</li>
+      </ul>           
+      </div>
+  </div>
+</section>
+
+<section>
+
+  <p data-markdown>
+  ## Tag
+  </p>
+</section>
+
+<section>
+  <img src="tag.png" style="border: none;box-shadow: none;width: 450px; height:450px">
+</section>
+
+  <section data-markdown><script type="text/template">
+    * A **Tag** allows to tag a specific poin in version history
+        * lightweight tags (just a pointer to a commit) 
+        `git tag <tagname>`
+        * annotated tags (full Git object, allows tags to have a message) 
+        `git tag -a <tagname>`
+        * signed tags (tag with signature) 
+        `git tag -s <tagname>`
+</script></section>
+
+<section>
+
+  <p data-markdown>
+  ## Merge
+  </p>
+</section>
+
+<section>
+  <div class="two-column">
+    <div class="left">
+      <img class="left" src="merge-01.png" style="border: none; box-shadow: none;width: 400px;">
+    </div>
+    <div class="right">
+      <p>Q: What is the result of merging the <i>featureX</i> branch into the master branch? Which branch is updated?</p>
+    </div>
+    </div>
+</section>
+
+<section>
+  <div class="two-column">
+      <div class="left">
+          <img class="left" src="merge-02.png" style="border: none; box-shadow: none;width: 400px;">
+      </div>
+      <div class="right" data-markdown>
+          * Merges *featureX* into the current branch (master).
+          * Creates a merge commit (commit with more than one parent).
+          * The current branch is updated.
+      </div>
+  </div>
+  <div data-markdown>
+    `git merge featureX`
+  </div>
+</section>
+
+<section>
+  <h2>Merge - Fast-Forward</h2>
+  <div class="two-column">
+      <div class="left">
+          <img class="left" src="merge-ff-01.png" style="border: none; box-shadow: none;width: 500px;">
+      </div>
+      <div class="right" data-markdown>
+          **Fast forward merge**
+          * Just moves the branch pointer.
+          * No creation of a merge commit.
+      </div>
+  </div>
+  <div data-markdown>
+    `git merge --no-ff`
+  </div>
+</section>
+
+<section>
+
+  <p data-markdown>
+  ## Cherry-Pick
+  </p>
+</section>
+
+<section>
+  <div class="two-column">
+      <div class="left">
+          <img class="left" src="cherry-pick-01.png" style="border: none; box-shadow: none;width:400px">
+      </div>
+      <div class="right" data-markdown>
+      * Imagine that:
+          * commit **E** implements a feature
+          * commit **F** is bug-fix
+          * the bug-fix **F** is needed in master        
+      </div>
+  </div>
+</section>
+
+<section>
+  <div class="two-column">
+      <div class="left">
+          <img class="left" src="cherry-pick-02.png" style="border: none; box-shadow: none;width:400px"> 
+      </div>
+      <div class="right" data-markdown>
+          * apply changes done by the commit that is cherry-picked to a new base.
+          * commit message is preserved.
+          * new commit has no parent relation to the commit that was cherry-picked.
+          * `cherry-pick` can fail with conflict.
+      </div>
+  </div>
+</section>
+
+<section>
+
+  <p data-markdown>
+  ## Rebase
+  </p>
+</section>
+
+<section>
+  <div class="two-column">
+      <div class="left">
+          <img class="left" src="rebase-01.png" style="border: none; box-shadow: none;width:400px"> 
+      </div>
+      <div class="right" data-markdown>
+          * redo the work that was done in the *featureX* branch on top of the master branch
+      </div>
+  </div>
+</section>
+
+<section>
+  <div class="two-column">
+      <div class="left">
+          <img class="left" src="rebase-02.png" style="border: none; box-shadow: none;width:400px;height:500px"> 
+      </div>
+      <div class="right" data-markdown>
+          * rebases the current branch to a another base commit
+          * rebase = series of cherry-picks
+          * `git rebase master` rebases all commits of the *featureX* branch onto the master branch.
+      </div>
+  </div>
+</section>
+
+<section>
+
+  <p data-markdown>
+  ## Merge v/s Rebase
+  </p>
+</section>
+
+<section>
+  <div class="two-column">
+      <div class="left">
+          <p>fetch > merge > push</p>
+          <img src="fetch-merge-push.png" style="width: 300px; height:400px;box-shadow: none; border: none;">
+      </div>
+      <div class="right">
+          <p>fetch > rebase > push</p>
+          <img src="fetch-rebase-push.png" style="width: 400px; height:400px;box-shadow: none; border: none;">
+      </div>
+  </div>
+</section>
+
+<section>
+  <div class="two-column">
+    <p class="left">
+      Merge
+    </p>
+    <p class="right">
+      Rebase
+    </p>
+</div>
+  <table>
+      <thead>
+          <tr>
+              <th></th>
+              <th></th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr>
+              <td>
+                  <ul>
+                      <li>Two commits, commit <b>C</b> which implements the feature and the merge commit <b>E</b>.</li>
+                      <li>Diverged history.</li>
+                      <li>From the history one can see that commit <b>C</b> was originally developed based on commit <b>B</b>.</li>
+                  </ul>
+              </td>
+              <td>
+                  <ul>
+                      <li>Single commit, it looks like commit <b>C</b> was developed based on commit <b>D</b>.</li>
+                      <li>Linear history.</li>
+                  </ul>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+</section>
+
+<section>
+
+  <p data-markdown>
+  ## Interactive Rebase
+  </p>
+</section>
+
+<section>
+  <section data-transition="slide">
+      <div class="two-column">
+          <div class="left">
+              <p>Before interactive<br> rebase</p>
+              <img src="before-rebase-i.png" style="width: 300px; height:400px;box-shadow: none; border: none;">
+          </div>
+          <div class="right">
+              <p data-markdown>`git rebase -i HEAD~3`</p>
+              <img src="after-rebase-i.png" style="width: 400px; height:400px;box-shadow: none; border: none;">
+          </div>
+      </div>
+  </section>
+</section>
+
+<section>
+
+  <p data-markdown>
+  ## Revert
+  </p>
+</section>
+
+<section>
+      <div class="two-column">
+          <div class="left">
+              <img src="revert-01.png" style="width: 300px; height:400px;box-shadow: none; border: none;">
+          </div>
+          <div data-markdown class="right">
+              * `git revert` undos the changes that have been done by a commit by creating a new commit that applies the inverted changes.
+              </div>
+      </div>
+</section>
+
+<section>
+  <div class="two-column">
+      <div class="left">
+          <img class="left" src="revert-02.png" style="width: 300px; height:400px;box-shadow: none; border: none;">
+      </div>
+      <div data-markdown class="right">
+          * `git revert` may fail due to conflicts. After resolving the conflicts and staging the conflict resolution you can create the revert commit by `git commit`.
+      </div>
+  </div>
+</section>
+
+<section>
+  <h2>Reset v/s Revert v/s Checkout</h2>
+  <table>
+      <thead>
+      <tr>
+      </tr>
+      </thead>
+      <thead>
+      <tr>
+      <td><code>reset</code></td>
+      <td>Commit</td>
+      <td>Discard commits/throw uncommited changes</td>
+      </tr>
+      <tr>
+      <td><code>reset</code></td>
+      <td>File</td>
+      <td>Unstage a file</td>
+      </tr>
+      <tr>
+      <td><code>checkout</code></td>
+      <td>Commit</td>
+      <td>Switch between branches</td>
+      </tr>
+      <tr>
+      <td><code>checkout</code></td>
+      <td>File</td>
+      <td>Discard changes in the working directory</td>
+      </tr>
+      <tr>
+      <td><code>revert</code></td>
+      <td>Commit</td>
+      <td>Undo commits</td>
+      </tr>
+      <tr>
+      <td><code>revert</code></td>
+      <td>File</td>
+      <td>(N/A)</td>
+      </tr>
+      </thead>
+      </table>
+</section>
+
+<section>
+  <h2>Lab Test 1 - Quiz (git concepts)</a></h2>
+</section>
+
+<section>
+  <h2>Limitations of versioning system</h2>
+  <ul>
+      <li>Versioning is not same as code review</li>
+      <li>Pull requests are not good enough to enforce rules</li>
+      <li>GitHub (a hosted site) has plugins, not necessarily free e.g. <a target="_blank" href="https://github.com/marketplace/codacy">Codacy</a> is free for Open Source (public) projects, same as GitHub</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Challenges in Agile</h2>
+  <ul>
+    <li>Communication (people and people, people across silos)</li>
+    <li>Time to test and time to release</li>
+    <li>Test driven development and consistent testing</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Tools for Automation</h2>
+  <ul>
+      <li><b>CI/CD</b> — Jenkins, Shippable, Bamboo, Travis-CI, <a href="https://github.com/features/actions" target="_blank">Github Actions</a></li>
+      <li><b>Containerization</b> — Docker, Rocket, Unik</li>
+      <li><b>Orchestration</b> — Kubernetes, Swarm, Mesos</li>
+      <li><b>Deployment</b> — Elastic Beanstalk, Octopus, Vamp</li>
+      <li><b>Test Automation</b> - Selenium, Cucumber, Apache JMeter</li>
+      <li><b>Measurement</b> - NewRelic, Kibana, Datadog</li>
+      <li><b>ChatOps</b> - Hubot, Lita, Cog</li>
+      <li><b>Infrastructure as code</b> - Ansible, Puppet, Chef</li>
+  </ul>
+</section>
+
+<section>
+    <h2>What is DevOps?</h2>
+    <ul style="list-style-type: none;">
+        <li>The term “DevOps” typically refers to the emerging professional movement that advocates a collaborative working relationship between Development and IT Operations, resulting in the fast flow of planned work (i.e., high deploy rates), while simultaneously increasing the reliability, stability, resilience and security of the production environment (Gene Kim).        </li>
+    </ul>
+</section>
+
+<section>
+  <h3>Large firms like Google would</h3>
+  <ul>
+    <li>Manage own firmware/hardware</li>
+    <li>Use open source and contribute back</li>
+    <li>Write own methods and scripts</li>
+    <li>Sometime engineer own hardware</li>
+  </ul>
+  </section>
+    
+<section>
+  <h3>Results in</h3>
+    <ul>
+      <li>Control over data and enviroment</li>
+      <li>Complexity and change</li>
+    </ul>
+</section>
+
+<section>
+  <h3>A client in need of IT services or a app shop would</h3>
+    <ul>
+      <li>Deploy on cloud like AWS</li>
+      <li>Pay for lot of value added services</li>
+      <li>Pay third-party tool to install and deploy</li>
+      <li>Trust someone else chips and software</li>
+    </ul>
+  </section>
+  
+  <section>
+        <h3>Results in</h3>
+        <ul>
+            <li>Quick and simple setup</li>
+            <li>Lack of control and expensive</li>
+        </ul>
+  </section>
+
+<section>
+    <h2>DevOps</h2>
+    <img src="Devops.png" style="max-width: 50%;max-height: 50%;">
+</section>
+
+<section>
+    <h2>DevOps Toolchain</h2>
+    <img src="Devops-toolchain.png">
+</section>
+
+<section>
+
+  <p data-markdown>
+  ## Jenkins
+  </p>
+</section>
+
+<section>
+  <img src="jenkins.png" style="box-shadow: none;border: none;">
+</section>
+
+<section>
+  <ul>
+      <li>Jenkins is a self-contained, open source automation server which can be used to automate all sorts of tasks related to building, testing, and delivering or deploying software.
+       <li>Jenkins can be installed through native system packages, Docker, or even run standalone by any machine with a Java Runtime Environment (JRE) installed.</li>
+  </ul>
+  <p><a href="https://jenkins.io/doc/" target="_blank">https://jenkins.io/doc/</a></p>
+</section>
+
+<section>
+  <h2>Travis-CI</h2>
+    <img src="travis-ci.png" style="max-width: 80%;max-height: 80%;">
+</section>
+
+<section>
+  <table>
+    <thead>
+      <tr>
+        <th>Travis-CI</th>
+        <th>Jenkins</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Simple to use with SaaS tools</td>
+        <td>good for control on your data & tools</td>
+      </tr>
+      <tr>
+        <td>Hosted(free for open source projects</td>
+        <td>Open source and can run on-premises</td>
+      </tr>
+      <tr>
+        <td>Simple config with YML file</td>
+        <td>Jobs(also has a YML file</td>
+      </tr>
+      <tr>
+        <td>Great integration with github</td>
+        <td>Github plugin</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+
+  <p data-markdown>
+  ## Docker
+  </p>
+</section>
+
+<section>
+      <img src="docker.png">
+</section>
+
+<section>
+  <ul>
+      <li>Containerization is a technology that’s been around for a long time, but it’s seen new life with Docker. It packages applications as images that contain everything needed to run them: code, runtime environment, libraries, and configuration. Images run in containers, which are discrete processes that take up only as many resources as any other executable.</li>
+  </ul>
+  <br/>
+  <p><a href="../../docker-overview/lecture/index.html" target="_blank">Docker Overview</a></p>
+</section>
+
+<section>
+  <h2>Learning Resources</h2>
+  <ul>
+    <li><a href="https://docs.docker.com/get-started/" target="_blank">Getting started with docker</a></li>
+    <li><a href="https://www.youtube.com/watch?v=YFl2mCHdv24" target="_blank">Docker in 12 min</a></li>
+    <li><a href="https://docker-curriculum.com/#introduction" target="_blank">Docker Introduction</a></li>
+  </ul>
+</section>
+
+<section>
+  <h2>Installation Instructions</h2>
+  <ul>
+  <li><a href="https://github.com/GeorgeBrownCollege-Toronto/Software-Development-Methodologies/blob/master/notes/advanced-git-and-devops/lab/Docker-Installation.md" target="_blank" >Docker Installation (My version)</a></li>
+  <li><a href="https://docs.docker.com/get-docker/" target="_blank">Docker Installation (Official)</a></li>
+</ul>
+</section>
+
+<section>
+  <h2>Lab - 2</h2>
+  <ul>
+    <li><a href="https://github.com/GeorgeBrownCollege-Toronto/Software-Development-Methodologies/blob/master/notes/advanced-git-and-devops/lab/node-react-ci-cd.md" target="_blank">Build a Node.js and React app with npm</a></li>
+  </ul>
+  <p>Submit a word file with screen shots of the Jenkins output</p>
+</section>
+
+<section>
+  <h2>What did we learn from Lab - 2</h2>
+  <ul>
+    <li>Basic configurations of jenkins</li>
+    <li>Setting up Continuous delivery pipeline(CD) in Jenkins</li>
+    <li>Groovy syntax</li>
+    <li>What is "Pipeline as Code" (IaC)</li>
+    <li>Build and deploy code with a CD pipeline</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Bonus Tutorial</h2>
+  <ul>
+    <li><a href="https://github.com/GeorgeBrownCollege-Toronto/Software-Development-Methodologies/blob/master/notes/advanced-git-and-devops/lab/multibranch-ci-cd.adoc" target="_blank">End-to-End Multibranch Pipeline Project Creation</a></li>
+  </ul>
+</section>
+
+<section>
+    <h2>Readings</h2>
+    <ul>
+        <li><a href="https://www.docker.com/blog/docker-101-introduction-docker-webinar-recap/" target="_blank">Docker 101</a></li>
+        <li><a href="https://www.oreilly.com/radar/the-evolution-of-devops/" target="_blank">Evoluation Of Docker</a></li>
+        <li><a href="https://docker-curriculum.com/" target="_blank">Docker Curriculumn</a></li>
+        <li><a href="https://www.guru99.com/must-know-linux-commands.html" target="_blank">Must know linux Commands</a></li>
+        <li><a href="https://stackoverflow.com/questions/32422264/jenkins-vs-travis-ci-which-one-would-you-use-for-a-open-source-project" target="_blank">Choosing CI</a></li>
+    </ul>
+</section>
+
+<section data-markdown><script type="text/template">
+
+## End
+
+</script></section>
+
+
+
+<!------------------------------------------------------->
+
+
+      </div>
+
+    </div>
+
+    <script src="../../../reveal.js/lib/js/head.min.js"></script>
+    <script src="../../../reveal.js/js/reveal.js"></script>
+
+    <script>
+
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        transition: 'none', // none/fade/slide/convex/concave/zoom
+
+	math: {
+          mathjax: './lib/MathJax/MathJax.js',
+          config: 'TeX-AMS_SVG-full',
+	},
+
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: '../../../reveal.js/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../../../reveal.js/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: '../../../reveal.js/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: '../../../reveal.js/plugin/math/math.js', async: true },
+           // Zoom in and out with Alt+click
+           { src: "../../../reveal.js/plugin/zoom-js/zoom.js", async: true },
+        ]
+      });
+
+    </script>
+
+  </body>
+</html>

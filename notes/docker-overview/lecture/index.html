@@ -44,6 +44,55 @@
       .two-column em {
         margin: 20px;
       }
+
+      .reveal .big-and-bold {
+        font-weight: bold;
+        font-size: 135%;
+      }
+
+      .reveal .shrunk-a-bit {
+        font-size: 90%;
+      }
+
+      .reveal .shrunk-a-bit pre {
+        width: 100%;
+      }
+
+      .reveal pre {
+        width: 100%;
+      }
+
+      .reveal .highlight {
+        color: yellow;
+        font-weight: bold;
+      }
+
+      .reveal .highlightRed {
+        color: red;
+        font-weight: bold;
+      }
+
+      .reveal .highlightGreen {
+        color: green;
+        font-weight: bold;
+      }
+
+      .left {
+        left:-8.33%;
+        text-align: left;
+        float: left;
+        width:50%;
+        z-index:-10;
+      }
+
+      .right {
+        left:31.25%;
+        top: 75px;
+        text-align: left;
+        float: right;
+        z-index:-10;
+        width:50%;
+      }
     </style>
   </head>
 
@@ -61,7 +110,7 @@
 
 ###### Credits : [Docker Docs](https://docs.docker.com/get-started/overview/)
 
-*Dhruvin Parikh, May 2020*
+*Dhruvin Parikh, January 2021*
 
 </script></section>
 
@@ -73,23 +122,40 @@
 </section>
 
 <section>
-    <h2>Technology</h2>
+    <p data-markdown>
+        # Technology
+    </p>
+</section>
+
+<section>
     <section data-markdown data-transition="slide"><script type="text/template">
-    * Docker is written in `Go` and takes advantage of several features of the Linux kernel to deliver its functionality.
+        * Docker is written in `Go` and takes advantage of several features of the Linux kernel to deliver its functionality.
     </script></section>
+</section>
+
+<section>
     <section data-markdown data-transition="slide"><script type="text/template">
-    #### Namespaces
-    * Namespaces provides isolated workspaces called *container*.
-    * Each aspect of container runs in seperate namespace and access is limited to namespace.
+        #### Namespaces
+        * Namespaces provides isolated workspaces called *container*.
+        * Each aspect of container runs in seperate namespace and access is limited to namespace.
     </script></section>
+</section>
+
+<section>
     <section data-markdown data-transition="slide"><script type="text/template">
-    #### Control groups
-    * Docker Engine on Linux also relies on another technology called control groups (cgroups). A cgroup limits an application to a specific set of resources. Control groups allow Docker Engine to share available hardware resources to containers and optionally enforce limits and constraints. For example, you can limit the memory available to a specific container.
+        #### Control groups
+        * Docker Engine on Linux also relies on another technology called control groups (cgroups). A cgroup limits an application to a specific set of resources. Control groups allow Docker Engine to share available hardware resources to containers and optionally enforce limits and constraints. For example, you can limit the memory available to a specific container.
     </script></section>
+</section>
+
+<section>
     <section data-markdown data-transition="slide"><script type="text/template">
-    #### Union file systems
-    * Union file systems, or UnionFS, are file systems that operate by creating layers, making them very lightweight and fast. Docker Engine uses UnionFS to provide the building blocks for containers. Docker Engine can use multiple UnionFS variants, including AUFS, btrfs, vfs, and DeviceMapper.
+        #### Union file systems
+        * Union file systems, or UnionFS, are file systems that operate by creating layers, making them very lightweight and fast. Docker Engine uses UnionFS to provide the building blocks for containers. Docker Engine can use multiple UnionFS variants, including AUFS, btrfs, vfs, and DeviceMapper.
     </script></section>
+</section>
+
+<section>
     <section data-markdown data-transition="slide"><script type="text/template">
         #### Container Format
         * Docker Engine combines the namespaces, control groups, and UnionFS into a wrapper called a container format. The default container format is `libcontainer`.
@@ -104,34 +170,43 @@
 </section>
 
 <section>
-    <h2>Docker Engine</h2>
-    <section data-transition="slide"> 
-        <img src="engine-components-flow.png">
-    </section>
-    <section data-transition="slide">
-        <ul style="list-style: none;">
-            <li>Docker engine is a client-server applications with:</li>
-        </ul>
-        <ul>
-            <li>A server which is a type of long-running program called a daemon process (the dockerd command).</li>
-            <li>A REST API which specifies interfaces that programs can use to talk to the daemon and instruct it what to do.</li>
-            <li>A command line interface (CLI) client (the docker command).</li>
-        </ul>
-    </section>
+    <p data-markdown>
+        ## Docker Engine
+        </p>
+        <div class="left">
+            <img style="float: left" src="engine-components-flow.png" />
+        </div>
+        
+        <div class="right"><p data-markdown>
+            * Server - a long-running process daemon (`dockerd`).
+            * REST API -  interface between programs and daemon.
+            * CLI - command line interface client (`docker`).
+    </p></div>
 </section>
 
 <section>
-    <h2>Docker objects</h2>
+    <p data-markdown>
+        # Docker objects
+    </p>
+</section>
+
+<section>
     <section data-transition="slide">
         <ul style="list-style: none;">
             <li>When you use Docker, you are creating and using images, containers, networks, volumes, plugins, and other objects. This section is a brief overview of some of those objects.</li>
         </ul>
     </section>
+</section>
+
+<section>
     <section data-markdown data-transition="slide"><script type="text/template">
         #### IMAGES
         * An image is a read-only template with instructions for creating a Docker container.
         * To build your own image, you create a Dockerfile with a simple syntax for defining the steps needed to create the image and run it. Each instruction in a Dockerfile creates a layer in the image.
     </script></section>
+</section>
+
+<section>
     <section data-markdown data-transition="slide"><script type="text/template">
         #### CONTAINERS
         * A container is a runnable instance of an image. You can `create`, `start`, `stop`, `move`, or `delete` a container using the Docker API or CLI.
@@ -140,6 +215,9 @@
         $ docker run -i -t ubuntu /bin/bash
         ```
     </script></section>
+</section>
+
+<section>
     <section data-markdown data-transition="slide"><script type="text/template">
         #### SERVICES
         * Services allow you to scale containers across multiple Docker daemons, which all work together as a swarm with multiple managers and workers. 
@@ -147,26 +225,32 @@
     </script></section>
 </section>
 
-<section data-markdown><script type="text/template">
-    ### A `run` command
-    * Pull images from registry if not found locally
-    * Creates a new container
-    * Allocates a read-write filesystem to the container, as final layer
-    * Creates a network interface to connect the container
-    * Starts the container and executes the sub-command if any 
-    * `exit` to terminate sub-command stops container.
-</script></section>
+<section>
+    <p data-markdown>
+        ## A `run` command
+        * Pull images from registry if not found locally
+        * Creates a new container
+        * Allocates a r/w filesystem to the container, as final layer
+        * Creates a network interface to connect the container
+        * Starts the container and executes the sub-command if any 
+        * `exit` - terminate sub-command stops container.
+    </p>   
+</section>
 
 <section>
-    <h2>Docker Architecture</h2>
-    <section data-transition="slide">
-        <img src="architecture.svg">
-    </section>
-    <section data-transition="slide">
-       <ul style="list-style: none;">
-           <li>Docker uses a client-server architecture. The Docker client talks to the Docker daemon, which does the heavy lifting of building, running, and distributing your Docker containers. The Docker client and daemon can run on the same system, or you can connect a Docker client to a remote Docker daemon. The Docker client and daemon communicate using a REST API, over UNIX sockets or a network interface.</li>
-       </ul>
-    </section>
+    <p data-markdown>
+        ## Docker Architecture
+        </p>
+        <div class="left">
+            <img style="float: left" src="architecture.svg" />
+        </div>
+        
+        <div class="right"><p data-markdown>
+            * A client-server architecture. 
+            * Daemon - `build`, `run`, and distribute Docker containers. 
+            * Client to daemon remote connection.
+            * Com : REST API, over UNIX sockets or a network interface.
+    </p></div>
 </section>
 
 <section>
@@ -192,10 +276,10 @@
 <section>
     <h2>Application of Docker</h2>
     <ul>
-        <li>Containers are great for continuous integration and continuous delivery (CI/CD) workflows.</li>
-        <li>Docker’s container-based platform allows for highly portable workloads.</li>
-        <li>Docker containers can run on a developer’s local laptop, on physical or virtual machines in a data center, on cloud providers, or in a mixture of environments.</li>
-        <li>Running more workloads on the same hardware makes it perfect for high density environment as well as small and medium deployments.</li>
+        <li>CI/CD workflows.</li>
+        <li>Highly portable workloads.</li>
+        <li>Run on a developer’s <b>local laptop</b>, on <b>physical or virtual machines</b> in a data center, on <b>cloud providers</b>, or in a <b>mixture of environments</b>.</li>
+        <li>Scalable by running more workloads on the same hardware.</li>
     </ul>
 </section>
 
