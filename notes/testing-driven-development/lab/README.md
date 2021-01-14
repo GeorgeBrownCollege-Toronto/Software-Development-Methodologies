@@ -163,7 +163,7 @@ I hope you already know :
 
 - Then in `src/App.test.js`, change the test to this.
 
-![wrap-in-act-error.png](./images/wrap-in-act-error.png)
+![src-app-test-js.png](./images/src-app-test-js.png)
 
 - Now, instead of calling the JSONPlaceholder API, it returns mockData. 
 - `fetchMock.once` is a function of `jest-fetch-mock` that mocks each call of fetch independently. 
