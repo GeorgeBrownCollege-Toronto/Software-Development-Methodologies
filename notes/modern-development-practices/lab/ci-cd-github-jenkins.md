@@ -65,4 +65,4 @@ This is the sample of the screenshot after build is triggered via GitHub reposit
 
 ![jenkins-github-13](./jenkins-github-13.png)
 
-Make the submission on [BlackBoard](https://bb-gbc.blackboard.com/webapps/assignment/uploadAssignment?content_id=_5081006_1&course_id=_184318_1&group_id=&mode=cpview)
+Make the submission on BlackBoard.
