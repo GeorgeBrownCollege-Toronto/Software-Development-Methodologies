@@ -45,6 +45,55 @@
         margin: 20px;
       }
 
+      .reveal .big-and-bold {
+        font-weight: bold;
+        font-size: 135%;
+      }
+
+      .reveal .shrunk-a-bit {
+        font-size: 90%;
+      }
+
+      .reveal .shrunk-a-bit pre {
+        width: 100%;
+      }
+
+      .reveal pre {
+        width: 100%;
+      }
+
+      .reveal .highlight {
+        color: yellow;
+        font-weight: bold;
+      }
+
+      .reveal .highlightRed {
+        color: red;
+        font-weight: bold;
+      }
+
+      .reveal .highlightGreen {
+        color: green;
+        font-weight: bold;
+      }
+
+      .left {
+        left:-8.33%;
+        text-align: left;
+        float: left;
+        width:50%;
+        z-index:-10;
+      }
+
+      .right {
+        left:31.25%;
+        top: 75px;
+        text-align: left;
+        float: right;
+        z-index:-10;
+        width:50%;
+      }
+
       .credits {
         font-size: small;
       }
@@ -65,458 +114,31 @@
 
 #### Modern Development Practices
 
-*Dhruvin Parikh, May 2020*
+*Dhruvin Parikh, January 2021*
 
 </script></section>
 
 <section id="class plan" data-markdown><script type="text/template">
   ### Content
-  * Advanced `git` concepts
-  * `git` commands that are needed for daily work
-  * Interactive `rebase`
-  * Basic `git` workflows
-  * Explanation of `git` version graph
-  * Code Review and Paired Prgramming
+  * Code Review and Paired Programming
+  * Tools for code review.
+  * Lab Test - 4
   * Introduction to Test Driven Development 
-  * Lab Test - 2, 3, 4
+  * Lab Test - 5
 </script></section>
-
-<section id="agenda" data-markdown><script type="text/template">
-  ### Agenda
-  * `git` repository structure
-  * `merge`, `rebase` and `cherry-pick`
-  * Gerrit code review tool
-  * Types of tests and its application
-  * Interactive `rebase`
-</script></section>
-
-<section>
-    <h2>Distributed versioning systems</h2>
-    <section data-transition="slide">
-    <div class="two-column">
-        <div>
-            <p>Distributed</p>
-            <img src="distributed.png" style="width: 300px; height:400px;">
-        </div>
-        <div>
-            <p>Centralised</p>
-            <img src="centralised.png" style="width: 400px; height:400px;">
-        </div>
-    </div>
-    <p class="credits">Image Credits : <a target="_blank" href="https://www.incredible-web.com/blog/revision-control-systems/">https://www.incredible-web.com/blog/revision-control-systems/</a></p>
-    </section>
-    <section data-transition="slide">
-        <ul style="list-style: none;">
-            <li>Distributed means</li>
-            <ul>
-                <li>Each developer has a complete, local repository</li>
-                <li>Technically the central repository is not different from the local repositories</li>
-                <li>Easy offline usage</li>
-                <li>Easy to branch a project</li>
-                <li>Examples: Git, Mercurial, Bazaar</li>
-            </ul>
-        </ul>
-    </section>
-</section>
-
-<section>
-    <h2>Git Repository Structure</h2>
-    <img src="repository-structure-01.png" style="width: 200px; height:300px;">
-    <div data-markdown><script type="text/template">
-    *   A **Git Repository** is created by :
-     *  `git init`
-     *  `git clone` 
-    </script></div>
-</section>
-
-<section>
-    <h2>Git Repository Structure</h2>
-        <img src="repository-structure-02.png" style="width: 200px; height:300px;">
-        <div data-markdown><script type="text/template">
-        * `.git` folder is git repository
-        * `.git` folder contains the full version database.
-        * Many files in the `.git` folder are human-readable.                
-        </script></div>
-</section>
-
-<section>
-    <h2>Git Repository Structure</h2>
-        <img src="repository-structure-03.png" style="width: 200px; height:300px;">
-        <div data-markdown><script type="text/template">
-            * files/folders next to the `.git` folder are the working tree
-            * A **Git Repository** has at most one working tree.                
-        </script></div>
-</section>
-
-<section>
-    <h2>Git Repository Structure</h2>
-        <img src="repository-structure-04.png" style="width: 250px; height:300px;">
-        <div data-markdown><script type="text/template">
-            * A **Git repository** without working tree is called *bare repository* (used on servers).                
-        </script></div>
-</section>
-
-<section>
-    <h2>Commit Object Structure</h2>
-    <section data-transition="slide">
-        <img src="commit-structure.png" style="border: none; box-shadow: none;max-width: 80%;max-height: 80%;">
-    </section>
-    <section data-markdown data-transition="slide"><script type="text/template">
-        **SHA1**
-        * globally unique commit ID
-        * 40-digit hexadecimal number
-        * function of the commit object content
-        * shown in `git` log output etc.
-        <br/>To inspect a commit use
-        * `git show <SHA1>`
-        * `git show --format=fuller <SHA1>`
-        * Once created commits are immutable.
-    </script></section>
-</section>
-
-<section data-markdown><script type="text/template">
-    ### Author v/s commiter
-    * Git sets author and committer based on the `user.name` and `user.email` config values.
-            Author :
-    * person who wrote the patch
-    * Author can be explicitly set on commit: `git commit --author=<author>`        
-    Committer :
-    * person who created the commit, e.g. project maintainer who applied the patch
-</script></section>
-
-<section>
-    <h2>Amend commit</h2>
-    <section>
-        <img src="amend-commit.png" style="border: none; box-shadow: none;max-width: 80%;max-height: 80%;">
-    </section>
-    <section data-markdown><script type="text/template">
-        * `git commit --amend` rewrites last commit:
-            * creates a sibling commit **D**
-            * creates a sibling commit **D** of the last commit **C** and resets the current branch to it 
-            * the old commit message is preserved, but can be edited if wanted
-            * the old commit **C** is still available in the repository
-            * rewrites the history of the branch              
-    </script></section>
-</section>
-
-<section>
-    <h2>Resetting Branches</h2>
-    <section>
-    <div class="two-column">
-        <div>
-            <img src="reset-01.png" style="width: 400px;height: 425px; box-shadow: none; border: none;">
-                        <p>HEAD is at tip of branch</p>
-        </div>
-        <div>
-            <img src="reset-02.png" style="width: 400px;height: 425px; box-shadow: none; border: none;">
-                        <p>After reset</p>
-        </div>
-    </div>
-    </section>
-    <section data-markdown><script type="text/template">
-        * Branches can be moved “manually” by `git reset`
-        ```bash
-        git reset B
-        ```
-        * Updates the current branch to point to commit **B**.
-        * Commit **C** and **D** are no longer part of the history of the master branch.
-    </script></section>
-</section>
-
-<section data-markdown><script type="text/template">
-    ### Resetting Branches
-    
-    ```bash
-    git reset --hard
-    ```
-    * Discard all local modifications
-    ```bash
-    git reset --soft
-    ```
-    * Squash commits
-    ```bash
-    git reset --mixed
-    ```
-     * Split commits
-</script></section>
-
-<section data-markdown><script type="text/template">
-    ### Resetting Branches
-
-    `git reset` | branch | index | working tree
-    --- | --- | --- | ---
-    `--soft` | Yes | no | no
-    `--mixed` (Default) | Yes | Yes | no
-    `--hard` | Yes | Yes | Yes
-</script></section>
-
-<section>
-    <h2>New Commit after reset</h2>
-    <img src="new-commit.png" style="width: 300px;height:350px; box-shadow: none;border: none;">
-    <ul>
-        <li>The new commit becomes successor of the commit to which the current branch points.</li>
-        <li>The current branch is updated.</li>
-    </ul>
-</section>
-
-<section>
-    <h2>Tag</h2>
-    <section data-transition="slide">
-        <img src="tag.png" style="border: none;box-shadow: none;width: 450px; height:450px">
-    </section>
-    <section data-markdown data-transition="slide"><script type="text/template">
-        * A **Tag** allows to tag a specific poin in version history
-            * lightweight tags (just a pointer to a commit) 
-            ```bash
-            git tag <tagname>
-            ```
-            * annotated tags (full Git object, allows tags to have a message) 
-            ```bash
-            git tag -a <tagname>
-            ```
-            * signed tags (tag with signature) 
-            ```bash
-            git tag -s <tagname>
-            ```
-    </script></section>
-</section>
-
-<section>
-    <h2>Merge</h2>
-    <section data-transition="slide">
-        <img src="merge-01.png" style="border: none; box-shadow: none;max-width: 50%;max-height: 50%;">
-        <p>Q: What is the result of merging the <i>featureX</i> branch into the master branch? Which branch is updated?</p>
-    </section>
-    <section data-transition="slide">
-        <div class="two-column">
-            <div>
-                <img src="merge-02.png" style="border: none; box-shadow: none;max-width: 500px;max-height: 300px">
-            </div>
-            <div data-markdown style="width: 600px;">
-                `git merge featureX` :
-                * Merges *featureX* into the current branch (master).
-                * Creates a merge commit (commit with more than one parent).
-                * The current branch is updated.
-            </div>
-        </div>
-    </section>
-</section>
-
-<section>
-    <h2>Merge - Fast-Forward</h2>
-    <div class="two-column">
-        <div>
-            <img src="merge-ff-01.png" style="border: none; box-shadow: none;max-width: 300px;max-height: 300px">
-        </div>
-        <div data-markdown style="width: 600px;">
-        * **Fast forward merge**
-            * Just moves the branch pointer.
-            * No creation of a merge commit.
-            * The creation of a merge commit can be enforced by:
-        ```bash
-        git merge --no-ff
-        ```
-        </div>
-    </div>
-</section>
-
-<section>
-    <h2>Cherry-Pick</h2>
-    <section data-transition="slide">
-    <div class="two-column">
-        <div>
-            <img src="cherry-pick-01.png" style="border: none; box-shadow: none;max-width: 300px;max-height: 300px">
-        </div>
-        <div data-markdown style="width: 600px;">
-        * Imagine that:
-            * commit **E** implements a feature
-            * commit **F** is bug-fix
-            * the bug-fix **F** is needed in master        
-        </div>
-    </div>
-    </section>
-    <section data-transition="slide">
-        <div class="two-column">
-            <div>
-                <img src="cherry-pick-02.png" style="border: none; box-shadow: none;max-width: 300px;max-height: 300px"> 
-            </div>
-            <div data-markdown style="width: 600px;">
-                * apply changes done by the commit that is cherry-picked to a new base.
-                * commit message is preserved.
-                * new commit has no parent relation to the commit that was cherry-picked.
-                * `cherry-pick` can fail with conflict.
-            </div>
-        </div>
-    </section>
-</section>
-
-<section>
-    <h2>Rebase</h2>
-    <section data-transition="slide">
-    <div class="two-column">
-        <div>
-            <img src="rebase-01.png" style="border: none; box-shadow: none;max-width: 300px;max-height: 300px"> 
-        </div>
-        <div data-markdown style="width: 600px;">
-            * redo the work that was done in the *featureX* branch on top of the master branch
-        </div>
-    </div>
-    </section>
-    <section data-transition="slide">
-        <div class="two-column">
-            <div>
-                <img src="rebase-02.png" style="border: none; box-shadow: none;max-width: 300px;max-height: 300px"> 
-            </div>
-            <div data-markdown style="width: 600px;">
-                * rebases the current branch to a another base commit
-                * rebase = series of cherry-picks
-                * `git rebase master` rebases all commits of the *featureX* branch onto the master branch.
-            </div>
-        </div>
-    </section>
-</section>
-
-<section>
-    <h2>Merge v/s Rebase</h2>
-    <section data-transition="slide">
-    <div class="two-column">
-        <div style="width:450px">
-            <p>fetch > merge > push</p>
-            <img src="fetch-merge-push.png" style="width: 300px; height:400px;box-shadow: none; border: none;">
-        </div>
-        <div style="width:450px">
-            <p>fetch > rebase > push</p>
-            <img src="fetch-rebase-push.png" style="width: 400px; height:400px;box-shadow: none; border: none;">
-        </div>
-    </div>
-    </section>
-    <section data-transition="slide">
-        <table>
-            <thead>
-                <tr>
-                    <th></th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>
-                        <ul>
-                            <li>Two commits, commit <b>C</b> which implements the feature and the merge commit <b>E</b>.</li>
-                            <li>Diverged history.</li>
-                            <li>From the history one can see that commit <b>C</b> was originally developed based on commit <b>B</b>.</li>
-                        </ul>
-                    </td>
-                    <td>
-                        <ul>
-                            <li>Single commit, it looks like commit <b>C</b> was developed based on commit <b>D</b>.</li>
-                            <li>Linear history.</li>
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-</section>
-
-<section>
-    <h2>Interactive Rebase</h2>
-    <section data-transition="slide">
-        <div class="two-column">
-            <div style="width:450px">
-                <p>Before interactive rebase</p>
-                <img src="before-rebase-i.png" style="width: 300px; height:400px;box-shadow: none; border: none;">
-            </div>
-            <div style="width:450px">
-                <p data-markdown>`git rebase -i HEAD~3`</p>
-                <img src="after-rebase-i.png" style="width: 400px; height:400px;box-shadow: none; border: none;">
-            </div>
-        </div>
-    </section>
-</section>
-
-<section>
-    <h2>Revert</h2>
-    <section data-transition="slide">
-        <div class="two-column">
-            <div style="width:450px">
-                <img src="revert-01.png" style="width: 300px; height:400px;box-shadow: none; border: none;">
-            </div>
-            <div data-markdown style="width:450px">
-                * `git revert` undos the changes that have been done by a commit by creating a new commit that applies the inverted changes.
-                </div>
-        </div>
-    </section>
-    <section data-transition="slide">
-        <div class="two-column">
-            <div style="width:450px">
-                <img src="revert-02.png" style="width: 300px; height:400px;box-shadow: none; border: none;">
-            </div>
-            <div data-markdown style="width:450px">
-                * `git revert` may fail due to conflicts. After resolving the conflicts and staging the conflict resolution you can create the revert commit by `git commit`.
-            </div>
-        </div>
-    </section>
-</section>
-
-<section>
-    <h2>Reset v/s Revert v/s Checkout</h2>
-    <table>
-        <thead>
-        <tr>
-        </tr>
-        </thead>
-        <thead>
-        <tr>
-        <td><code>reset</code></td>
-        <td>Commit</td>
-        <td>Discard commits/throw uncommited changes</td>
-        </tr>
-        <tr>
-        <td><code>reset</code></td>
-        <td>File</td>
-        <td>Unstage a file</td>
-        </tr>
-        <tr>
-        <td><code>checkout</code></td>
-        <td>Commit</td>
-        <td>Switch between branches</td>
-        </tr>
-        <tr>
-        <td><code>checkout</code></td>
-        <td>File</td>
-        <td>Discard changes in the working directory</td>
-        </tr>
-        <tr>
-        <td><code>revert</code></td>
-        <td>Commit</td>
-        <td>Undo commits</td>
-        </tr>
-        <tr>
-        <td><code>revert</code></td>
-        <td>File</td>
-        <td>(N/A)</td>
-        </tr>
-        </thead>
-        </table>
-</section>
-
-<section>
-    <h2>Lab Test 2 - <a target="_blank" href="https://bb-gbc.blackboard.com/webapps/assessment/take/launchAssessment.jsp?course_id=_184318_1&content_id=_5077849_1&mode=cpview">Self Assessment Quiz</a></h2>
-</section>
 
 <section>
     <h2>Github model for open source</h2>
     <img src="github-model.png">
-</section>
-
-<section>
+  </section>
+  
+  <section>
     <h2>Agile Best Practices</h2>
     <img src="extreme-programming.jpg">
     <p class="credits">Source : <a target="_blank" href="http://xprogramming.com/what-is-extreme-programming/">http://xprogramming.com/what-is-extreme-programming/</a></p>
-</section>
-
-<section>
+  </section>
+  
+  <section>
     <h2>Why there is coding standard</h2>
     <ul>
         <li>Get your code (patch) accepted </li>
@@ -526,16 +148,7 @@
         <li>Improve quality</li>            
         <li>Work well with automated tools (e.g. counting lines of code, diffs)</li>
     </ul>
-</section>
-
-<section>
-    <h2>Limitations of versioning system</h2>
-    <ul>
-        <li>Versioning is not same as code review</li>
-        <li>Pull requests are not good enough to enforce rules</li>
-        <li>GitHub (a hosted site) has plugins, not necessarily free e.g. <a target="_blank" href="https://github.com/marketplace/codacy">Codacy</a> is free for Open Source (public) projects, same as GitHub</li>
-    </ul>
-</section>
+  </section>
 
 <section>
     <h2>Code Review tools</h2>
@@ -550,107 +163,77 @@
 </section>
 
 <section>
-    <h2>Gerrit</h2>
-    <section data-transition="slide">
-        <h4>Discuss code</h4>
-        <img src="gerrit-discuss-code.png">
-    </section>
-    <section data-transition="slide">
-        <h4>Code Review</h4>
-        <div class="two-column">
-            <div style="width:450px">
-                <img src="intro-quick-review-line-comment.jpg" style="width: 450px; height:300px;box-shadow: none; border: none;">
-                <p class="credits">Image : <a target="_blank" href="https://git.eclipse.org/r/Documentation/intro-quick.html">https://git.eclipse.org/r/Documentation/intro-quick.html</a></p>
-            </div>
-            <div data-markdown style="width:350px">
-                * Quality check
-                * After build & test
-                * Automated tools e.g. Gerrit
-            </div>
-        </div>
-    </section>
-    <section>
-        <h4>How gerrit works</h4>
-        <div class="two-column">
-            <div style="width:450px">
-                <img src="intro-quick-central-repo.png" style="width: 450px; height:300px;box-shadow: none; border: none;">
-                <p class="credits">Image : <a target="_blank" href="https://gerrit-documentation.storage.googleapis.com/Documentation/2.16.2/intro-how-gerrit-works.html">https://gerrit-documentation.storage.googleapis.com/Documentation/2.16.2/intro-how-gerrit-works.html</a></p>
-            </div>
-            <div style="width:450px">
-                <img src="intro-quick-central-gerrit.png" style="width: 450px; height:300px;box-shadow: none; border: none;">
-                <p class="credits">Image : <a target="_blank" href="https://gerrit-documentation.storage.googleapis.com/Documentation/2.16.2/intro-gerrit-walkthrough.html">https://gerrit-documentation.storage.googleapis.com/Documentation/2.16.2/intro-gerrit-walkthrough.html</a></p>
-            </div>
-        </div>
-    </section>
-    <section>
-        <h4>Code review workflow</h4>
-        <div class="two-column">
-            <div style="width:450px">
-                <img src="code-review.jpg" style="width: 450px; height:300px;box-shadow: none; border: none;">
-                <p class="credits">Image : <a target="_blank" href="https://subscription.packtpub.com/book/application_development/9781783289479/6/ch06lvl1sec38/gerrit-code-review-roles-and-workflow">source</a></p>
-            </div>
-            <div data-markdown style="width:350px">
-                * Typically integrated with a CI/CD pipeline.
-                * If the code builds, then it’s good to go for review.
-            </div>
-        </div>
-    </section>
+  <h2>Gerrit</h2>
+</section>
+
+<section>
+  <h4>Discuss code</h4>
+  <img src="gerrit-discuss-code.png">
+</section>
+
+<section>
+  <h4>Code Review</h4>
+  <div class="two-column">
+      <div style="width:450px">
+          <img src="intro-quick-review-line-comment.jpg" style="width: 450px; height:300px;box-shadow: none; border: none;">
+          <p class="credits">Image : <a target="_blank" href="https://git.eclipse.org/r/Documentation/intro-quick.html">https://git.eclipse.org/r/Documentation/intro-quick.html</a></p>
+      </div>
+      <div data-markdown style="width:350px">
+          * Quality check
+          * After build & test
+          * Automated tools e.g. Gerrit
+      </div>
+  </div>
+</section>
+
+<section>
+  <h4>How gerrit works</h4>
+  <div class="two-column">
+      <div style="width:450px">
+          <img src="intro-quick-central-repo.png" style="width: 450px; height:300px;box-shadow: none; border: none;">
+          <p class="credits">Image : <a target="_blank" href="https://gerrit-documentation.storage.googleapis.com/Documentation/2.16.2/intro-how-gerrit-works.html">https://gerrit-documentation.storage.googleapis.com/Documentation/2.16.2/intro-how-gerrit-works.html</a></p>
+      </div>
+      <div style="width:450px">
+          <img src="intro-quick-central-gerrit.png" style="width: 450px; height:300px;box-shadow: none; border: none;">
+          <p class="credits">Image : <a target="_blank" href="https://gerrit-documentation.storage.googleapis.com/Documentation/2.16.2/intro-gerrit-walkthrough.html">https://gerrit-documentation.storage.googleapis.com/Documentation/2.16.2/intro-gerrit-walkthrough.html</a></p>
+      </div>
+  </div>
+</section>
+
+<section>
+  <h4>Code review workflow</h4>
+  <div class="two-column">
+      <div style="width:450px">
+          <img src="code-review.jpg" style="width: 450px; height:300px;box-shadow: none; border: none;">
+          <p class="credits">Image : <a target="_blank" href="https://subscription.packtpub.com/book/application_development/9781783289479/6/ch06lvl1sec38/gerrit-code-review-roles-and-workflow">source</a></p>
+      </div>
+      <div data-markdown style="width:350px">
+          * Typically integrated with a CI/CD pipeline.
+          * If the code builds, then it’s good to go for review.
+      </div>
+  </div>
+</section>
+
+<section>
+  <h4><a target="_blank" href="https://github.com/GeorgeBrownCollege-Toronto/Software-Development-Methodologies/blob/master/notes/modern-development-practices/demo/install-gerrit.md" >Gerrit Installation Instructions</a></h4>
 </section>
 
 <section>
     <h2>Refactoring</h2>
-    <section data-transition="slide">
-        <img src="refactoring-n.jpg">
-    </section>
-    <section>
-        <ul>
-            <li>Classic SDLC is linear: write all the code to specs and send it to QA for testing</li>            
-            <li>Refactoring is the idea that code can continuously be rewritten in a better way, do it ASAP, before it is too costly to change anything</li>
-            <li>Reduce code complexity (and improve maintainability)</li>
-            <li>Provide non functional enhancements</li>                
-            <li>Extensibility: re-architect the codebase more effectively</li>
-        </ul>
-    </section>
 </section>
 
 <section>
-    <h2>Test Driven Development</h2>
-    <ul>
-        <li>Avoid regression</li>
-        <li>Easier maintenance and error detection</li>
-        <li>Test bite-sized code</li>
-        <li>Release early and often</li>
-    </ul>
+  <img src="refactoring-n.jpg">
 </section>
 
 <section>
-    <h2>Types of test</h2>
-    <ul>
-        <li>Unit testing (for e.g. <a target="_blank" href="https://github.com/mochajs/mocha">Mocha</a> for JS)</li>
-        <li>Inegration testing</li>
-        <li>System testing</li>
-        <li>Interface testing</li>
-        <li>Acceptance testing</li>
-        <li>Performance testing</li>
-        <li>Stress testing</li>
-        <li>Reliability testing</li>
-    </ul>
-    <p>The list is long...</p>
-</section>
-
-<section>
-    <h2>TDD Process</h2>
-    <ul>
-        <li>Start by adding a test</li>
-        <li>Run all tests and make sure the new one fails</li>
-        <li>Write the code</li>
-        <li>Run all tests</li>
-        <li>Refactor as needed</li>
-    </ul>
-</section>
-
-<section>
-    <h2>Lab test 3 - <a target="_blank" href="https://github.com/GeorgeBrownCollege-Toronto/Software-Development-Methodologies/blob/master/notes/modern-development-practices/lab/tdd-in-react.md">TDD In React</a></h2>
+  <ul>
+      <li>Classic SDLC is linear: write all the code to specs and send it to QA for testing</li>            
+      <li>Refactoring is the idea that code can continuously be rewritten in a better way, do it ASAP, before it is too costly to change anything</li>
+      <li>Reduce code complexity (and improve maintainability)</li>
+      <li>Provide non functional enhancements</li>                
+      <li>Extensibility: re-architect the codebase more effectively</li>
+  </ul>
 </section>
 
 <section>
@@ -687,7 +270,47 @@
 </section>
 
 <section>
-    <h2>Lab test - 4 <a target="_blank" href="https://github.com/GeorgeBrownCollege-Toronto/Software-Development-Methodologies/blob/master/notes/modern-development-practices/lab/code-review-and-pair-programming.md">Code Review and Pair programming</a></h2>
+  <h2>Lab test - 4 Code Review and Pair programming</h2>
+</section>
+
+<section>
+  <h2>Test Driven Development</h2>
+  <ul>
+      <li>Avoid regression</li>
+      <li>Easier maintenance and error detection</li>
+      <li>Test bite-sized code</li>
+      <li>Release early and often</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Types of test</h2>
+  <ul>
+      <li>Unit testing (for e.g. <a target="_blank" href="https://github.com/mochajs/mocha">Mocha</a> for JS)</li>
+      <li>Inegration testing</li>
+      <li>System testing</li>
+      <li>Interface testing</li>
+      <li>Acceptance testing</li>
+      <li>Performance testing</li>
+      <li>Stress testing</li>
+      <li>Reliability testing</li>
+  </ul>
+  <p>The list is long...</p>
+</section>
+
+<section>
+  <h2>TDD Process</h2>
+  <ul>
+      <li>Start by adding a test</li>
+      <li>Run all tests and make sure the new one fails</li>
+      <li>Write the code</li>
+      <li>Run all tests</li>
+      <li>Refactor as needed</li>
+  </ul>
+</section>
+
+<section>
+    <h2>Lab test - 5 Integrating CI/CD</h2>
 </section>
 
 <section data-markdown><script type="text/template">
