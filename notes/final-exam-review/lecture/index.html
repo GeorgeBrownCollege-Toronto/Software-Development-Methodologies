@@ -45,6 +45,55 @@
         margin: 20px;
       }
 
+      .reveal .big-and-bold {
+        font-weight: bold;
+        font-size: 135%;
+      }
+
+      .reveal .shrunk-a-bit {
+        font-size: 90%;
+      }
+
+      .reveal .shrunk-a-bit pre {
+        width: 100%;
+      }
+
+      .reveal pre {
+        width: 100%;
+      }
+
+      .reveal .highlight {
+        color: yellow;
+        font-weight: bold;
+      }
+
+      .reveal .highlightRed {
+        color: red;
+        font-weight: bold;
+      }
+
+      .reveal .highlightGreen {
+        color: green;
+        font-weight: bold;
+      }
+
+      .left {
+        left:-8.33%;
+        text-align: left;
+        float: left;
+        width:50%;
+        z-index:-10;
+      }
+
+      .right {
+        left:31.25%;
+        top: 75px;
+        text-align: left;
+        float: right;
+        z-index:-10;
+        width:50%;
+      }
+
       .credits {
         font-size: small;
       }
@@ -187,10 +236,10 @@
 
 <section>
   <div class="two-column">
-    <div>
-      <img src="git-reset.png" width="400px" height="450px" style="border:none;box-shadow: none;">
+    <div class="left">
+      <img class="left" src="git-reset.png" style="border:none;box-shadow: none;">
     </div>
-    <div>
+    <div class="right">
       <ul>
         <li><code>git checkout hotfix</code></li>
         <li><code>git reset HEAD~2</code></li>
@@ -208,23 +257,27 @@
 
 <section>
   <h2><code>git revert</code></h2>
-  <section data-transition="slide">
+</section>
+
+<section>
     <div class="two-column">
-      <div>
-        <img src="git-revert-commit.svg" height="400px" width="400px" style="border:none;box-shadow: none;">
+      <div class="left">
+        <img src="git-revert-commit.svg" class="left"  style="border:none;box-shadow: none;">
       </div>
-      <div>
+      <div class="right">
         <ul>
           <li><code>git checkout hotfix</code></li>
           <li><code>git revert HEAD~2</code></li>
         </ul>
       </div>
     </div>
-  </section>
-</section data-transition="slide">
+</section >
 
 <section>
   <h2><code>git merge</code></h2>
+</section>
+
+<section>
   <ul>
     <li><code>git checkout feature</code></li>
     <li><code>git merge master</code></li>
@@ -241,16 +294,19 @@
 
 <section>
   <h2><code>git rebase</code></h2>
+</section>
+
+<section>
   <ul>
     <li><code>git checkout feature</code></li>
     <li><code>git rebase master</code></li>
   </ul>
   <div class="two-column">
     <div>
-      <img src="git-merge-before.svg" height="500px" width="400px" style="border:none;box-shadow: none;">
+      <img class="left" src="git-merge-before.svg" height="500px" width="400px" style="border:none;box-shadow: none;">
     </div>
     <div>
-      <img src="git-rebase-after.svg" height="500px" width="400px" style="border:none;box-shadow: none;">
+      <img class="left" src="git-rebase-after.svg" height="500px" width="400px" style="border:none;box-shadow: none;">
     </div>
   </div>
 </section>
