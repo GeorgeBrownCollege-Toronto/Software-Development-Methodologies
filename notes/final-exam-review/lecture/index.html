@@ -65,7 +65,7 @@
 
 ##### Final Exam Overview
 
-*Dhruvin Parikh, May 2020*
+*Dhruvin Parikh, January 2021*
 
 </script></section>
 
@@ -78,81 +78,89 @@
 </script></section>
 
 <section>
-  <section data-transition="slide">
-    <h2>Source Version Control</h2>
-  </section>
-  <section data-transition="slide">
-    <h2>Why?</h2>
-    <ul>
-      <li>1 lone wolf does not need version control (well may be for rollbacks & back-up)</li>
-      <li>Remote teams can use emails and attachments (for patches), can they?</li>        
-      <li>How to coordinate a dev team working on the same codebase?</li>
-      <li>How to manage massively distributed development projects like open source?</li>
-    </ul>
-  </section>
-  <section data-transition="slide">
-    <h2>Chronology of Version Control Systems</h2>
-    <img src="scmhistory.png" width="600px">
-    <p class="credits" target="_blank"><a href="http://blog.plasticscm.com/2010/11/version-control-timeline.html">Image Credits</a></p>
-  </section>
-  <section data-transition="slide">
-    <h2>Centralised Version control</h2>
-    <div class="two-column">
-      <div>
-        <img src="version-control-fig2.png">
-      </div>
-      <div>
-        <ul>
-          <li>You commit</li>
-          <li>They update</li>
-        </ul>
-      </div>
+  <h2>Version Control System</h2>
+</section>
+
+<section>
+  <h2>Why?</h2>
+  <ul>
+    <li>1 lone wolf does not need version control (well may be for rollbacks & back-up)</li>
+    <li>Remote teams can use emails and attachments (for patches), can they?</li>        
+    <li>How to coordinate a dev team working on the same codebase?</li>
+    <li>How to manage massively distributed development projects like open source?</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Chronology of Version Control Systems</h2>
+  <img src="scmhistory.png" width="600px">
+  <p class="credits" target="_blank"><a href="http://blog.plasticscm.com/2010/11/version-control-timeline.html">Image Credits</a></p>
+</section>
+
+<section>
+  <h2>Centralised Version control</h2>
+  <div class="two-column">
+    <div>
+      <img src="version-control-fig2.png">
     </div>
-  </section>
-  <section data-transition="slide">
-    <h2>Decentralised Version control</h2>
-    <div class="two-column">
-      <div>
-        <img src="version-control-fig3.png">
-      </div>
-      <div>
-        <ul>
-          <li>You commit</li>
-          <li>You push</li>
-          <li>They pull</li>
-          <li>They update</li>
-        </ul>
-      </div>
+    <div>
+      <ul>
+        <li>You commit</li>
+        <li>They update</li>
+      </ul>
     </div>
-  </section>
-  <section data-transition="slide">
-    <h2>SVN</h2>
-    <ul>
-      <li>Software versioning and revision control system distributed as open source under the Apache License.</li>
-      <li>Has only one single place for the full version history of the software.</li>
-    </ul>
-  </section>
-  <section data-transition="slide">
-    <h2><code>git</code> SCM</h2>
-    <ul>
-      <li><code>git</code> is decentralised version control system</li>
-      <li>Every developer's working copy of the code is also a repository that can contain the full history of all changes.</li>
-      <li><code>git</code> has been designed with performance, security and flexibility in mind.</li>
-    </ul>
-  </section>
-  <section data-transition="slide">
+  </div>
+</section>
+
+<section>
+  <h2>Decentralised Version control</h2>
+  <div class="two-column">
+    <div>
+      <img src="version-control-fig3.png">
+    </div>
+    <div>
+      <ul>
+        <li>You commit</li>
+        <li>You push</li>
+        <li>They pull</li>
+        <li>They update</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>SVN</h2>
+  <ul>
+    <li>Software versioning and revision control system distributed as open source under the Apache License.</li>
+    <li>Has only one single place for the full version history of the software.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><code>git</code> SCM</h2>
+  <ul>
+    <li><code>git</code> is decentralised version control system</li>
+    <li>Every developer's working copy of the code is also a repository that can contain the full history of all changes.</li>
+    <li><code>git</code> has been designed with performance, security and flexibility in mind.</li>
+  </ul>
+</section>
+
+<section>
     <h2>The main component of <code>git</code> repository</h2>
     <img src="git-repository.svg" style="border: none; box-shadow: none;">
-  </section>
-  <section data-transition="slide">
+</section>
+
+<section>
     <h2>Open Source Development Process</h2>
     <a href="https://youtu.be/Tyd0FO0tko8">https://youtu.be/Tyd0FO0tko8</a>
-  </section>
 </section>
 
 <section>
   <h2><code>git checkout</code></h2>
-  <section data-transition="slide">
+</section>
+
+<section>
   <ul>
     <li>moves <b>HEAD</b> ref point to specified commit</li>
   </ul>
@@ -163,19 +171,21 @@
   </ul>
   <br/>
   <img src="git-after-checkout.png" style="border:none;box-shadow: none;">
-  </section>
-  <section data-transition="slide">
+</section>
+
+  <section>
     <ul>
       <li>A file level checkout will change the file's contents to those of the specific commit.</li>
       <li><code>git checkout HEAD~2 foo.py</code></li>
     </ul>
     <img src="git-checkout-file.svg" height="300px" style="border:none;box-shadow: none;">
   </section>
-</section>
 
 <section>
   <h2><code>git reset</code></h2>
-  <section data-transition="slide">
+</section>
+
+<section>
   <div class="two-column">
     <div>
       <img src="git-reset.png" width="400px" height="450px" style="border:none;box-shadow: none;">
@@ -187,13 +197,13 @@
       </ul>
     </div>
   </div>
-  </section>
-  <section data-transition="slide">
+</section>
+
+<section>
     <ul>
       <li>file-path invocation updates the staged snapshot to match the version from the specified commit.</li>
     </ul>
     <img src="git-reset-file.svg" height="400px" width="500px" style="border:none;box-shadow: none;">
-  </section>
 </section>
 
 <section>
