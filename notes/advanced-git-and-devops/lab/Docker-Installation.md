@@ -14,7 +14,7 @@ Installation Instructions for **Windows 10 Pro with Entreprise and Education(160
 
 Installation Instructions for other Windows version :
 
-- Install **Docker-Toolbox** from [https://download.docker.com/win/stable/DockerToolbox.exe](https://download.docker.com/win/stable/DockerToolbox.exe)
+- Install **Docker-Toolbox** from [https://download.docker.com/win/static/stable/x86_64/docker-20.10.6.zip](https://download.docker.com/win/static/stable/x86_64/docker-20.10.6.zip)
 - Double click on setup and follow on-screen instructions and do not forget to check Oracle Virtual Box if you do not have installed previously in the Docker Toolbox set up window.
 - Once installed the Docker Toolbox Quickstart Icon is available on Desktop. Open it. (It will create a default machine)
 - Run the command `docker-machine ip` to get the IP address of docker machine.
@@ -23,7 +23,7 @@ Installation Instructions for other Windows version :
 
 - Installation instructions for Ubuntu as a Windows subsystem - [https://docs.microsoft.com/en-us/windows/wsl/install-win10](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
 
-- Installation instructions for Docker-Toolbox - [https://download.docker.com/win/stable/DockerToolbox.exe](https://download.docker.com/win/stable/DockerToolbox.exe)
+- Installation instructions for Docker-Toolbox - [https://download.docker.com/win/static/stable/x86_64/docker-20.10.6.zip](https://download.docker.com/win/static/stable/x86_64/docker-20.10.6.zip)
 
 - Launch Docker QuickStart
 
